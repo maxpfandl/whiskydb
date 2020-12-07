@@ -14,7 +14,7 @@ else
     <div class="container">
         <div class="row">
             <div class="col">
-                <img src="@whisky.Image">
+                <img width="512px" src="@whisky.ImageUrl">
             </div>
             <div class="col-lg">
                 <EditForm Model="@whisky" OnValidSubmit="@HandleValidSubmit">
@@ -137,14 +137,10 @@ else
     {
         try
         {
-            var format = "image/png";
-            var imageFile = e.File;
+            var files = await WhiskyService.SaveImage(e.File);
+            whisky.ImageUrl = files.Item1;
 
-            var resizedImageFile = await imageFile.RequestImageFileAsync(format, 1024, 1024);
-            var buffer = new byte[resizedImageFile.Size];
-            await resizedImageFile.OpenReadStream(10 * 1024 * 1024).ReadAsync(buffer);
-            var imageDataUrl = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
-            whisky.Image = imageDataUrl;
+            whisky.ImageUrlTh = files.Item2;
         }
         catch (Exception ex)
         {

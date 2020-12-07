@@ -20,7 +20,8 @@ namespace whiskyserverapp.Data
         public string Palate { get; set; }
         public string Finish { get; set; }
         public string Rating { get; set; }
-        public string Image { get; set; }
+        public string ImageUrlTh { get; set; }
+        public string ImageUrl { get; set; }
 
         public bool Finished { get; set; }
 
