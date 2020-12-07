@@ -1,0 +1,54 @@
+@page "/"
+@using Data
+@inject WhiskyService WhiskyService
+
+<h1>Overview</h1>
+
+@if (_whiskys == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Image</th>
+                <th>Age</th>
+                <th>Last Pour</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var whisky in _whiskys)
+            {
+                <tr>
+                    <td><a href="details/@whisky.Id">@whisky.Name</a></td>
+                    <td>@whisky.Type</td>
+                    <td><img height="200px" src="@whisky.Image"></td>
+                    <td>@whisky.Age</td>
+                    <td>@whisky.LastPour</td>
+                    <td @onclick="() => PourOne(whisky.Id)"><a href="">Pour One</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Whisky> _whiskys;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _whiskys = await WhiskyService.GetWhiskys();
+    }
+
+    private async void PourOne(string id)
+    {
+        await WhiskyService.PourOne(id);
+        _whiskys = await WhiskyService.GetWhiskys();
+        StateHasChanged();
+    }
+}

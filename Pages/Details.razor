@@ -1,0 +1,154 @@
+@page "/details/{id}"
+@using whiskyserverapp.Data
+@inject WhiskyService WhiskyService
+
+<h1>Details</h1>
+
+@if (whisky == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <h2>@whisky.Name - @whisky.Type</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <img src="@whisky.Image">
+            </div>
+            <div class="col-lg">
+                <EditForm Model="@whisky" OnValidSubmit="@HandleValidSubmit">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="form-group">
+                        <label>Name:
+                            <InputText @bind-Value="whisky.Name" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Type:
+                            <InputText @bind-Value="whisky.Type" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Age:
+                            <InputNumber @bind-Value="whisky.Age" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Alcohol:
+                            <InputNumber @bind-Value="whisky.Alc" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Aquired:
+                            <InputDate @bind-Value="whisky.Aquired" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Opened:
+                            <InputDate @bind-Value="whisky.Opened" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>LastPour:
+                            <InputDate @bind-Value="whisky.LastPour" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Pours:
+                            <InputNumber @bind-Value="whisky.Pours" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Price:
+                            <InputNumber @bind-Value="whisky.Price" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Notes:
+                            <InputTextArea @bind-Value="whisky.Notes" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Nose:
+                            <InputTextArea @bind-Value="whisky.Nose" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Palate:
+                            <InputTextArea @bind-Value="whisky.Palate" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Finish:
+                            <InputTextArea @bind-Value="whisky.Finish" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Rating:
+                            <InputText @bind-Value="whisky.Rating" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Distilled:
+                            <InputDate @bind-Value="whisky.Distilled" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Botteled:
+                            <InputDate @bind-Value="whisky.Botteled" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Finished:
+                            <InputCheckbox @bind-Value="whisky.Finished" />
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Image:
+                            <InputFile OnChange="@OnInputFileChange"></InputFile> @error
+                        </label>
+                    </div>
+                    <button type="submit">Update</button>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    private Whisky whisky;
+    private string error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        whisky = await WhiskyService.GetWhisky(Id);
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        await WhiskyService.UpdateWhisky(whisky);
+    }
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        try
+        {
+            var format = "image/png";
+            var imageFile = e.File;
+
+            var resizedImageFile = await imageFile.RequestImageFileAsync(format, 1024, 1024);
+            var buffer = new byte[resizedImageFile.Size];
+            await resizedImageFile.OpenReadStream(10 * 1024 * 1024).ReadAsync(buffer);
+            var imageDataUrl = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+            whisky.Image = imageDataUrl;
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+        }
+    }
+}
