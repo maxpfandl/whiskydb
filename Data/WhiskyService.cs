@@ -38,6 +38,35 @@ namespace whiskyserverapp.Data
             }
         }
 
+        public async Task CleanImages()
+        {
+            var whiskeys = await GetWhiskys(true);
+            var files = Directory.GetFiles(_imagePath);
+            foreach (var file in files)
+            {
+                var delete = true;
+                var fileName = Path.GetFileName(file);
+                foreach (var whiskey in whiskeys)
+                {
+                    var fileNameW = Path.GetFileName(whiskey.ImageUrl);
+                    if (fileNameW == fileName)
+                    {
+                        delete = false;
+                        break;
+                    }
+                    fileNameW = Path.GetFileName(whiskey.ImageUrlTh);
+                    if (fileNameW == fileName)
+                    {
+                        delete = false;
+                        break;
+                    }
+                }
+                if(delete){
+                    File.Delete(file);
+                }
+            }
+        }
+
         public async Task<Whisky> GetWhisky(string id)
         {
             if (File.Exists(_whiskyFile))
@@ -71,7 +100,7 @@ namespace whiskyserverapp.Data
 
         public async Task UpdateWhisky(Whisky toUpdate)
         {
-            var whiskeys = await GetWhiskys();
+            var whiskeys = await GetWhiskys(true);
 
             whiskeys.RemoveAll(p => p.Id == toUpdate.Id);
 
@@ -85,7 +114,7 @@ namespace whiskyserverapp.Data
         public async Task AddWhisky(Whisky whiskyToAdd)
         {
 
-            var whiskeys = await GetWhiskys();
+            var whiskeys = await GetWhiskys(true);
             whiskeys.Add(whiskyToAdd);
             string json = JsonSerializer.Serialize(whiskeys);
 
@@ -96,7 +125,7 @@ namespace whiskyserverapp.Data
         {
             string guid = Guid.NewGuid().ToString().Replace("-", "");
             var fileName = guid + ".png";
-            var fileNameThumb =guid + "_th.png";
+            var fileNameThumb = guid + "_th.png";
 
 
             var format = "image/png";

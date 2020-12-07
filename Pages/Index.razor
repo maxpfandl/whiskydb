@@ -2,7 +2,14 @@
 @using Data
 @inject WhiskyService WhiskyService
 
-<h1>Overview</h1>
+@if (_whiskys == null)
+{
+    <h1>Overview</h1>
+}
+else
+{
+    <h1>Overview @_whiskys.Count Whisk(e)ys</h1>
+}
 
 @if (_whiskys == null)
 {
@@ -42,6 +49,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        await WhiskyService.CleanImages();
         _whiskys = await WhiskyService.GetWhiskys();
     }
 
