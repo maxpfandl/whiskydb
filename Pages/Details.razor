@@ -20,95 +20,77 @@ else
                 <EditForm Model="@whisky" OnValidSubmit="@HandleValidSubmit">
                     <DataAnnotationsValidator />
                     <ValidationSummary />
-                    <div class="form-group">
-                        <label>Name:
-                            <InputText @bind-Value="whisky.Name" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Name:</label>
+                        <InputText class="col-sm-8" @bind-Value="whisky.Name" />
                     </div>
-                    <div class="form-group">
-                        <label>Type:
-                            <InputText @bind-Value="whisky.Type" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Type:</label>
+                        <InputText class="col-sm-8" @bind-Value="whisky.Type" />
                     </div>
-                    <div class="form-group">
-                        <label>Age:
-                            <InputNumber @bind-Value="whisky.Age" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Age:</label>
+                        <InputNumber class="col-sm-8" @bind-Value="whisky.Age" />
                     </div>
-                    <div class="form-group">
-                        <label>Alcohol:
-                            <InputNumber @bind-Value="whisky.Alc" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Alcohol:</label>
+                        <InputNumber class="col-sm-8" @bind-Value="whisky.Alc" />
                     </div>
-                    <div class="form-group">
-                        <label>Aquired:
-                            <InputDate @bind-Value="whisky.Aquired" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Aquired:</label>
+                        <InputDate class="col-sm-8" @bind-Value="whisky.Aquired" />
                     </div>
-                    <div class="form-group">
-                        <label>Opened:
-                            <InputDate @bind-Value="whisky.Opened" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Opened:</label>
+                        <InputDate class="col-sm-8" @bind-Value="whisky.Opened" />
                     </div>
-                    <div class="form-group">
-                        <label>LastPour:
-                            <InputDate @bind-Value="whisky.LastPour" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">LastPour:</label>
+                        <InputDate class="col-sm-8" @bind-Value="whisky.LastPour" />
                     </div>
-                    <div class="form-group">
-                        <label>Pours:
-                            <InputNumber @bind-Value="whisky.Pours" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Pours:</label>
+                        <InputNumber class="col-sm-8" @bind-Value="whisky.Pours" />
                     </div>
-                    <div class="form-group">
-                        <label>Price:
-                            <InputNumber @bind-Value="whisky.Price" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Price:</label>
+                        <InputNumber class="col-sm-8" @bind-Value="whisky.Price" />
                     </div>
-                    <div class="form-group">
-                        <label>Notes:
-                            <InputTextArea @bind-Value="whisky.Notes" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Notes:</label>
+                        <InputTextArea class="col-sm-8" @bind-Value="whisky.Notes" />
                     </div>
-                    <div class="form-group">
-                        <label>Nose:
-                            <InputTextArea @bind-Value="whisky.Nose" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Nose:</label>
+                        <InputTextArea class="col-sm-8" @bind-Value="whisky.Nose" />
                     </div>
-                    <div class="form-group">
-                        <label>Palate:
-                            <InputTextArea @bind-Value="whisky.Palate" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Palate:</label>
+                        <InputTextArea class="col-sm-8" @bind-Value="whisky.Palate" />
                     </div>
-                    <div class="form-group">
-                        <label>Finish:
-                            <InputTextArea @bind-Value="whisky.Finish" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Finish:</label>
+                        <InputTextArea class="col-sm-8" @bind-Value="whisky.Finish" />
                     </div>
-                    <div class="form-group">
-                        <label>Rating:
-                            <InputText @bind-Value="whisky.Rating" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Rating:</label>
+                        <InputText class="col-sm-8" @bind-Value="whisky.Rating" />
                     </div>
-                    <div class="form-group">
-                        <label>Distilled:
-                            <InputDate @bind-Value="whisky.Distilled" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Distilled:</label>
+                        <InputDate class="col-sm-8" @bind-Value="whisky.Distilled" />
                     </div>
-                    <div class="form-group">
-                        <label>Botteled:
-                            <InputDate @bind-Value="whisky.Botteled" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Botteled:</label>
+                        <InputDate class="col-sm-8" @bind-Value="whisky.Botteled" />
                     </div>
-                    <div class="form-group">
-                        <label>Finished:
-                            <InputCheckbox @bind-Value="whisky.Finished" />
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Finished:</label>
+                        <InputCheckbox style="margin-top:10px" class="col-sm-1" @bind-Value="whisky.Finished" />
                     </div>
-                    <div class="form-group">
-                        <label>Image:
-                            <InputFile OnChange="@OnInputFileChange"></InputFile> @error
-                        </label>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Image:</label>
+                        <InputFile class="col-sm-8" OnChange="@OnInputFileChange"></InputFile> @error
                     </div>
                     <button type="submit">Update</button>
                 </EditForm>
