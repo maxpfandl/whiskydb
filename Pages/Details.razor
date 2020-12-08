@@ -103,12 +103,42 @@ else
     </div>
 }
 
+@if (showModal)
+{
+    <div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirm</h4>
+                    <button type="button" class="close" @onclick="@ModalCancel">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <p>Really delete @whisky.Name?</p>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn" @onclick="@ModalCancel">Cancel</button>
+                    <button type="button" class="btn btn-danger" @onclick=@ModalOk>Yes</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
 @code {
     [Parameter]
     public string Id { get; set; }
 
     private Whisky whisky;
     private string error;
+
+    private bool showModal = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -117,8 +147,7 @@ else
 
     private async void DeleteWhisky(string id)
     {
-        await WhiskyService.DeleteWhisky(id);
-        NavigationManager.NavigateTo("/");
+        showModal = true;
     }
     private async Task HandleValidSubmit()
     {
@@ -138,5 +167,14 @@ else
         {
             error = ex.Message;
         }
+    }
+
+    void ModalShow() => showModal = true;
+    void ModalCancel() => showModal = false;
+    async Task  ModalOk()
+    {
+        await WhiskyService.DeleteWhisky(Id);
+        showModal = false;
+        NavigationManager.NavigateTo("/");
     }
 }
