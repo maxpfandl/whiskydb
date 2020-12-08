@@ -1,6 +1,8 @@
 @page "/details/{id}"
+@using Microsoft.AspNetCore.Http.Extensions
 @using whiskyserverapp.Data
 @inject WhiskyService WhiskyService
+@inject NavigationManager NavigationManager
 
 <h1>Details</h1>
 
@@ -93,6 +95,7 @@ else
                         <InputFile class="col-sm-8" OnChange="@OnInputFileChange"></InputFile> @error
                     </div>
                     <button type="submit" class="btn btn-primary">Update Whisky</button>
+                    <button type="button" @onclick="() => DeleteWhisky(whisky.Id)" class="btn btn-danger">Delete Whisky</button>
                 </EditForm>
             </div>
         </div>
@@ -111,9 +114,15 @@ else
         whisky = await WhiskyService.GetWhisky(Id);
     }
 
+    private async void DeleteWhisky(string id)
+    {
+        await WhiskyService.DeleteWhisky(id);
+        NavigationManager.NavigateTo("/");
+    }
     private async Task HandleValidSubmit()
     {
         await WhiskyService.UpdateWhisky(whisky);
+        NavigationManager.NavigateTo("/");
     }
     private async Task OnInputFileChange(InputFileChangeEventArgs e)
     {

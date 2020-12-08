@@ -8,10 +8,12 @@ using Microsoft.AspNetCore.Components.Forms;
 
 namespace whiskyserverapp.Data
 {
+
     public class WhiskyService
     {
         private string _whiskyFile;
         private string _imagePath;
+        private object _lock = new object();
         public WhiskyService()
         {
             var path = Directory.GetCurrentDirectory();
@@ -21,26 +23,19 @@ namespace whiskyserverapp.Data
 
         public async Task<List<Whisky>> GetWhiskys(bool includeFinished = false)
         {
-            if (File.Exists(_whiskyFile))
+
+            var whiskys = ReadAll();
+            if (!includeFinished)
             {
-                var whiskeyString = await File.ReadAllTextAsync(_whiskyFile);
-                var whiskys = JsonSerializer.Deserialize<List<Whisky>>(whiskeyString);
-                if (!includeFinished)
-                {
-                    whiskys.RemoveAll(p => p.Finished);
-                }
-                whiskys.Sort();
-                return whiskys;
+                whiskys.RemoveAll(p => p.Finished);
             }
-            else
-            {
-                return new List<Whisky>();
-            }
+            whiskys.Sort();
+            return whiskys;
         }
 
         public async Task CleanImages()
         {
-            var whiskeys = await GetWhiskys(true);
+            var whiskeys = ReadAll();
             var files = Directory.GetFiles(_imagePath);
             foreach (var file in files)
             {
@@ -61,7 +56,8 @@ namespace whiskyserverapp.Data
                         break;
                     }
                 }
-                if(delete){
+                if (delete)
+                {
                     File.Delete(file);
                 }
             }
@@ -69,56 +65,48 @@ namespace whiskyserverapp.Data
 
         public async Task<Whisky> GetWhisky(string id)
         {
-            if (File.Exists(_whiskyFile))
-            {
-                var whiskeyString = await File.ReadAllTextAsync(_whiskyFile);
-                var whiskeys = JsonSerializer.Deserialize<List<Whisky>>(whiskeyString);
-                return whiskeys.Find(p => p.Id == id);
-            }
-            else
-            {
-                return null;
-            }
+            var whiskeys = ReadAll();
+            return whiskeys.Find(p => p.Id == id);
         }
 
-        public async Task PourOne(string id)
+        public async Task<List<Whisky>> DeleteWhisky(string id)
         {
-            if (File.Exists(_whiskyFile))
-            {
-                var whiskeyString = await File.ReadAllTextAsync(_whiskyFile);
-                var whiskeys = JsonSerializer.Deserialize<List<Whisky>>(whiskeyString);
-                var whisky = whiskeys.Find(p => p.Id == id);
-                whisky.LastPour = DateTime.Now;
-                if (whisky.Pours.HasValue)
-                    whisky.Pours = whisky.Pours.Value + 1;
-                else whisky.Pours = 1;
-                string json = JsonSerializer.Serialize(whiskeys);
-                File.WriteAllText(_whiskyFile, json);
-            }
+            var whiskeys = ReadAll();
+
+            whiskeys.RemoveAll(p => p.Id == id);
+
+            return WriteAll(whiskeys);
 
         }
 
-        public async Task UpdateWhisky(Whisky toUpdate)
+        public async Task<List<Whisky>> PourOne(string id)
         {
-            var whiskeys = await GetWhiskys(true);
+            var whiskeys = ReadAll();
+            var whisky = whiskeys.Find(p => p.Id == id);
+            whisky.LastPour = DateTime.Now;
+            if (whisky.Pours.HasValue)
+                whisky.Pours = whisky.Pours.Value + 1;
+            else whisky.Pours = 1;
+            return WriteAll(whiskeys);
+        }
+
+        public async Task<List<Whisky>> UpdateWhisky(Whisky toUpdate)
+        {
+            var whiskeys = ReadAll();
 
             whiskeys.RemoveAll(p => p.Id == toUpdate.Id);
 
             whiskeys.Add(toUpdate);
 
-            string json = JsonSerializer.Serialize(whiskeys);
-
-            File.WriteAllText(_whiskyFile, json);
+            return WriteAll(whiskeys);
         }
 
-        public async Task AddWhisky(Whisky whiskyToAdd)
+        public async Task<List<Whisky>> AddWhisky(Whisky whiskyToAdd)
         {
 
-            var whiskeys = await GetWhiskys(true);
+            var whiskeys = ReadAll();
             whiskeys.Add(whiskyToAdd);
-            string json = JsonSerializer.Serialize(whiskeys);
-
-            File.WriteAllText(_whiskyFile, json);
+            return WriteAll(whiskeys);
         }
 
         public async Task<Tuple<string, string>> SaveImage(IBrowserFile file)
@@ -144,6 +132,29 @@ namespace whiskyserverapp.Data
                 await imageStream.CopyToAsync(stream);
             }
             return new Tuple<string, string>($"images/{fileName}", $"images/{fileNameThumb}");
+        }
+
+        private List<Whisky> ReadAll()
+        {
+            lock (_lock)
+            {
+                if (File.Exists(_whiskyFile))
+                {
+                    var whiskeyString = File.ReadAllText(_whiskyFile);
+                    var whiskeys = JsonSerializer.Deserialize<List<Whisky>>(whiskeyString);
+                    return whiskeys;
+                }
+                else return new List<Whisky>();
+            }
+        }
+        private List<Whisky> WriteAll(List<Whisky> whiskys)
+        {
+            lock (_lock)
+            {
+                string json = JsonSerializer.Serialize(whiskys);
+                File.WriteAllText(_whiskyFile, json);
+            }
+            return whiskys;
         }
     }
 }

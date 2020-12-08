@@ -55,8 +55,7 @@ else
 
     private async void PourOne(string id)
     {
-        await WhiskyService.PourOne(id);
-        _whiskys = await WhiskyService.GetWhiskys();
+        _whiskys = await WhiskyService.PourOne(id);
         StateHasChanged();
     }
 }
