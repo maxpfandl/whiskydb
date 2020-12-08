@@ -17,27 +17,29 @@ else
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Type</th>
-                <th scope="col">Image</th>
-                <th scope="col">Age</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var whisky in _whiskys)
-            {
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
                 <tr>
-                    <th  scope="row"><a href="details/@whisky.Id">@whisky.Name</a></th>
-                    <td>@whisky.Type @whisky.Alc% ABV</td>
-                    <td><img height="150px" src="@whisky.ImageUrlTh"></td>
-                    <td>@whisky.Age</td>
+                    <th scope="col">Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Age</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var whisky in _whiskys)
+                {
+                    <tr>
+                        <th scope="row"><a href="details/@whisky.Id">@whisky.Name</a></th>
+                        <td>@whisky.Type @whisky.Alc% ABV</td>
+                        <td><img height="150px" src="@whisky.ImageUrlTh"></td>
+                        <td>@whisky.Age</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
 
 @code {
@@ -47,7 +49,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         var whiskys = await WhiskyService.GetWhiskys(true);
-        whiskys.RemoveAll(p=>!p.Finished);
+        whiskys.RemoveAll(p => !p.Finished);
         _whiskys = whiskys;
     }
 
