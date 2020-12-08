@@ -47,8 +47,39 @@ else
     </table>
 }
 
+@if (showModal)
+{
+    <div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirm</h4>
+                    <button type="button" class="close" @onclick="@ModalCancel">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <p>Is it that time of day again?</p>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn" @onclick="@ModalCancel">Cancel</button>
+                    <button type="button" class="btn btn-danger" @onclick=@ModalOk>Pour me one!</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
 @code {
+
+    bool showModal = false;
     private List<Whisky> _whiskys;
+    private string _id;
 
     protected override async Task OnInitializedAsync()
     {
@@ -58,7 +89,16 @@ else
 
     private async void PourOne(string id)
     {
-        _whiskys = await WhiskyService.PourOne(id);
+        showModal = true;
+        _id=id;
+
+    }
+    void ModalShow() => showModal = true;
+    void ModalCancel() => showModal = false;
+    async Task  ModalOk()
+    {
+        _whiskys = await WhiskyService.PourOne(_id);
         StateHasChanged();
+        showModal = false;
     }
 }
