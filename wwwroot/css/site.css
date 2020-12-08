@@ -5,13 +5,34 @@ html, body {
 }
 
 a, .btn-link {
-    color: #0366d6;
+    color: #581D17;
+}
+a:hover{
+    color: #581D17;
+    text-decoration: underline;
 }
 
 .btn-primary {
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    background-color:#581D17;
+    border-color:#E38200;
+}
+.btn-primary:hover{
+    color: #fff;
+    background-color:#7e2c23;
+    border-color:#f09b2c;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color:#E38200;
+    border-color:#FDEB7B;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color:#fc8f01;
+    border-color:#f3e8a2;
 }
 
 .content {
