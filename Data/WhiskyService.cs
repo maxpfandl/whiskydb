@@ -84,6 +84,11 @@ namespace whiskyserverapp.Data
             var whiskeys = ReadAll();
             var whisky = whiskeys.Find(p => p.Id == id);
             whisky.LastPour = DateTime.Now;
+            if (whisky.PourDates == null)
+            {
+                whisky.PourDates = new List<DateTime>();
+            }
+            whisky.PourDates.Add(DateTime.Now);
             if (whisky.Pours.HasValue)
                 whisky.Pours = whisky.Pours.Value + 1;
             else whisky.Pours = 1;
@@ -153,7 +158,9 @@ namespace whiskyserverapp.Data
         {
             lock (_lock)
             {
-                string json = JsonSerializer.Serialize(whiskys);
+                JsonSerializerOptions options = new JsonSerializerOptions();
+                options.WriteIndented = true;
+                string json = JsonSerializer.Serialize(whiskys, options);
                 File.WriteAllText(_whiskyFile, json);
             }
             return whiskys;
