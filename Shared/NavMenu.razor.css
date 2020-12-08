@@ -12,6 +12,11 @@
     color:#5c2304;
 }
 
+.navbar-brand:hover {
+    font-size: 1.1rem;
+    color:#160801;
+}
+
 .oi {
     width: 2rem;
     font-size: 1.1rem;
