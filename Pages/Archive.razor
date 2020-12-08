@@ -20,18 +20,18 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Image</th>
-                <th>Age</th>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Image</th>
+                <th scope="col">Age</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var whisky in _whiskys)
             {
                 <tr>
-                    <td><a href="details/@whisky.Id">@whisky.Name</a></td>
-                    <td>@whisky.Type</td>
+                    <th  scope="row"><a href="details/@whisky.Id">@whisky.Name</a></th>
+                    <td>@whisky.Type @whisky.Alc% ABV</td>
                     <td><img height="150px" src="@whisky.ImageUrlTh"></td>
                     <td>@whisky.Age</td>
                 </tr>
@@ -46,7 +46,9 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        _whiskys = await WhiskyService.GetWhiskys(true);
+        var whiskys = await WhiskyService.GetWhiskys(true);
+        whiskys.RemoveAll(p=>!p.Finished);
+        _whiskys = whiskys;
     }
 
 }

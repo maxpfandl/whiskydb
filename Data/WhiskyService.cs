@@ -87,7 +87,9 @@ namespace whiskyserverapp.Data
             if (whisky.Pours.HasValue)
                 whisky.Pours = whisky.Pours.Value + 1;
             else whisky.Pours = 1;
-            return WriteAll(whiskeys);
+            var result = WriteAll(whiskeys);
+            result.Sort();
+            return result;
         }
 
         public async Task<List<Whisky>> UpdateWhisky(Whisky toUpdate)

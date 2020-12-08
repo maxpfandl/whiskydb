@@ -25,8 +25,27 @@ namespace whiskyserverapp.Data
 
         public bool Finished { get; set; }
 
+        public string GetPoursString()
+        {
+            if (Pours.HasValue)
+                return $"({Pours})";
+            else return "";
+        }
+
         public int CompareTo(Whisky other)
         {
+
+            if (other.LastPour.HasValue && this.LastPour.HasValue)
+            {
+                return other.LastPour.Value.CompareTo(this.LastPour.Value);
+            }
+
+            if (other.LastPour.HasValue)
+                return 1;
+
+            if (this.LastPour.HasValue)
+                return -1;
+
             if (other.Age.HasValue && this.Age.HasValue)
                 return other.Age.Value - this.Age.Value;
 
