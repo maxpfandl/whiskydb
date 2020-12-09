@@ -37,6 +37,15 @@ else
                         <InputNumber class="col-sm-8" @bind-Value="whisky.Alc" />
                     </div>
                     <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Attributes:</label>
+                        <div class="btn-group btn-group-sm col-sm-8" role="group">
+                            <button type="button" class="btn btn-secondary @((whisky.ArtColor ? "active" : ""))"
+                                @onclick="() => ToggleColor()">Art. Color</button>
+                            <button type="button" class="btn btn-secondary @((whisky.UnChillfiltered ? "active" : ""))"
+                                @onclick="() => ToggleChill()">Un-Chillfiltered</button>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Aquired:</label>
                         <InputDate class="col-sm-8" @bind-Value="whisky.Aquired" />
                     </div>
@@ -86,15 +95,17 @@ else
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Finished:</label>
-                        <button type="button" @onclick="() => ToggleFinished()" class="btn btn-sm btn-secondary">@whisky.GetFinishedString()</button>
+                        <button type="button" @onclick="() => ToggleFinished()"
+                            class="btn btn-sm btn-secondary  @((whisky.Finished ? "active" : ""))">@whisky.GetFinishedString()</button>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Image:</label>
                         <InputFile class="col-sm-8" OnChange="@OnInputFileChange"></InputFile> @error
                     </div>
                     <button type="submit" class="btn btn-primary">Update Whisky</button>
-                    <button type="button" @onclick="() => DeleteWhisky(whisky.Id)" class="btn btn-danger">Delete Whisky</button>
-                    <br/>
+                    <button type="button" @onclick="() => DeleteWhisky(whisky.Id)" class="btn btn-danger">Delete
+                        Whisky</button>
+                    <br />
                 </EditForm>
             </div>
         </div>
@@ -174,10 +185,20 @@ else
 
     void ModalShow() => showModal = true;
     void ModalCancel() => showModal = false;
-    async Task  ModalOk()
+    async Task ModalOk()
     {
         await WhiskyService.DeleteWhisky(Id);
         showModal = false;
         NavigationManager.NavigateTo("/");
+    }
+
+    private async Task ToggleColor()
+    {
+        whisky.ArtColor = !whisky.ArtColor;
+    }
+
+    private async Task ToggleChill()
+    {
+        whisky.UnChillfiltered = !whisky.UnChillfiltered;
     }
 }

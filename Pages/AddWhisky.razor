@@ -44,6 +44,13 @@
         <InputDate class="col-sm-8" @bind-Value="whisky.Botteled" />
     </div>
     <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Attributes:</label>
+        <div class="btn-group btn-group-sm" role="group">
+            <button type="button" class="btn btn-secondary @((whisky.ArtColor ? "active" : ""))" @onclick="() => ToggleColor()">Art. Color</button>
+            <button type="button" class="btn btn-secondary @((whisky.UnChillfiltered ? "active" : ""))" @onclick="() => ToggleChill()">Un-Chillfiltered</button>
+        </div>
+    </div>
+    <div class="form-group row">
         <label class="col-sm-2 col-form-label">Image:</label>
         <InputFile class="col-sm-8" OnChange="@OnInputFileChange"></InputFile> @error
     </div>
@@ -75,4 +82,12 @@
             error = ex.Message;
         }
     }
+    private async Task ToggleColor(){
+whisky.ArtColor = !whisky.ArtColor;
+    }
+
+        private async Task ToggleChill(){
+whisky.UnChillfiltered = !whisky.UnChillfiltered;
+    }
+
 }

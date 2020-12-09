@@ -32,7 +32,16 @@ else
                 {
                     <tr>
                         <th scope="row"><a href="details/@whisky.Id">@whisky.Name</a></th>
-                        <td>@whisky.Type @whisky.Alc% ABV</td>
+                        <td>@whisky.Type @whisky.Alc% ABV
+                            @if (whisky.ArtColor)
+                            {
+                                <span class="badge badge-secondary">Colored</span>
+                            }
+                            @if (whisky.UnChillfiltered)
+                            {
+                                <span class="badge badge-secondary">Un-Chillfiltered</span>
+                            }
+                        </td>
                         <td><img height="150px" src="@whisky.ImageUrlTh"></td>
                         <td>@whisky.Age</td>
                     </tr>
