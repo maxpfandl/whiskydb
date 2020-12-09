@@ -45,6 +45,8 @@ else
                                 @onclick="() => ToggleChill()">Un-Chillfiltered</button>
                             <button type="button" class="btn btn-secondary @((whisky.CaskStrength ? "active" : ""))"
                                 @onclick="() => ToggleCS()">Cask Strength</button>
+                            <button type="button" class="btn btn-secondary @((whisky.SingleCask ? "active" : ""))"
+                                @onclick="() => ToggleSC()">Single Cask</button>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -207,5 +209,9 @@ else
     private async Task ToggleCS()
     {
         whisky.CaskStrength = !whisky.CaskStrength;
+    }
+    private async Task ToggleSC()
+    {
+        whisky.SingleCask = !whisky.SingleCask;
     }
 }

@@ -30,6 +30,7 @@ namespace whiskyserverapp.Data
         public bool UnChillfiltered { get; set; }
         public bool ArtColor { get; set; }
         public bool CaskStrength { get; set; }
+        public bool SingleCask { get; set; }
 
         public string GetPoursString()
         {

@@ -45,6 +45,10 @@ else
                             {
                                 <span class="badge badge-secondary" title="Cask Strength">CS</span>
                             }
+                            @if (whisky.SingleCask)
+                            {
+                                <span class="badge badge-secondary" title="Single Cask">SC</span>
+                            }
                         </td>
                         <td><img height="150px" src="@whisky.ImageUrlTh"></td>
                         <td class="text-right">@whisky.Age</td>
