@@ -92,6 +92,10 @@ namespace whiskyserverapp.Data
             if (whisky.Pours.HasValue)
                 whisky.Pours = whisky.Pours.Value + 1;
             else whisky.Pours = 1;
+            if (!whisky.Opened.HasValue)
+            {
+                whisky.Opened = DateTime.Now;
+            }
             var result = WriteAll(whiskeys);
             result.Sort();
             return result;
