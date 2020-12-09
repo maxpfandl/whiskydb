@@ -50,7 +50,7 @@ else
                         <td class="text-right">@whisky.Price?.ToString("###.00") €</td>
                         <td><img height="150px" src="@whisky.ImageUrlTh"></td>
                         <td>@whisky.LastPour?.ToString("yyyy-MM-dd") @whisky.GetPoursString()</td>
-                        <td><button @onclick="() => PourOne(whisky.Id)" type="button" class="btn btn-secondary">Pour
+                        <td><button @onclick="() => PourOne(whisky.Id, whisky.Name, whisky.Type)" type="button" class="btn btn-secondary">Pour
                                 One</button></td>
                     </tr>
                 }
@@ -74,6 +74,7 @@ else
                 <!-- Modal body -->
                 <div class="modal-body">
                     <p>Is it that time of day again?</p>
+                    <em>@_name</em>
                 </div>
 
                 <!-- Modal footer -->
@@ -91,6 +92,7 @@ else
     bool showModal = false;
     private List<Whisky> _whiskys;
     private string _id;
+    private string _name;
 
     protected override async Task OnInitializedAsync()
     {
@@ -98,10 +100,11 @@ else
         _whiskys = await WhiskyService.GetWhiskys();
     }
 
-    private async void PourOne(string id)
+    private async void PourOne(string id, string name, string type)
     {
         showModal = true;
         _id = id;
+        _name = $"{name} {type}";
 
     }
     void ModalShow() => showModal = true;
