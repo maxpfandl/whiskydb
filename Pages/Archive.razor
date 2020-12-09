@@ -24,7 +24,7 @@ else
                     <th scope="col">Name</th>
                     <th scope="col">Type</th>
                     <th scope="col">Image</th>
-                    <th scope="col">Age</th>
+                    <th class="text-right" scope="col">Age</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@ else
                 {
                     <tr>
                         <th scope="row"><a href="details/@whisky.Id">@whisky.Name</a></th>
-                        <td>@whisky.Type; @whisky.Alc% ABV
+                        <td>@whisky.Type; <nobr>@whisky.Alc% ABV</nobr>
                             @if (whisky.ArtColor)
                             {
                                 <span class="badge badge-secondary">Colored</span>
@@ -43,7 +43,7 @@ else
                             }
                         </td>
                         <td><img height="150px" src="@whisky.ImageUrlTh"></td>
-                        <td>@whisky.Age</td>
+                        <td class="text-right">@whisky.Age</td>
                     </tr>
                 }
             </tbody>

@@ -23,10 +23,9 @@ else
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Type</th>
-                    <th scope="col">Age</th>
-                    <th class="text-right" scope="col">Price</th>
                     <th scope="col">Image</th>
-
+                    <th class="text-right" scope="col">Age</th>
+                    <th class="text-right" scope="col">Price</th>
                     <th scope="col">Last Pour</th>
                     <th scope="col"></th>
                 </tr>
@@ -36,7 +35,7 @@ else
                 {
                     <tr>
                         <th scope="row"><a href="details/@whisky.Id">@whisky.Name</a></th>
-                        <td>@whisky.Type; @whisky.Alc% ABV
+                        <td>@whisky.Type; <nobr>@whisky.Alc% ABV</nobr>
                             @if (whisky.ArtColor)
                             {
                                 <span class="badge badge-secondary">Colored</span>
@@ -46,10 +45,10 @@ else
                                 <span class="badge badge-secondary">Un-Chillfiltered</span>
                             }
                         </td>
-                        <td>@whisky.Age</td>
-                        <td class="text-right">@whisky.Price?.ToString("###.00") €</td>
                         <td><img height="150px" src="@whisky.ImageUrlTh"></td>
-                        <td>@whisky.LastPour?.ToString("yyyy-MM-dd") @whisky.GetPoursString()</td>
+                        <td class="text-right">@whisky.Age</td>
+                        <td class="text-right">@whisky.Price?.ToString("###.00")&nbsp;€</td>
+                        <td><nobr>@whisky.LastPour?.ToString("yyyy-MM-dd")</nobr> @whisky.GetPoursString()</td>
                         <td><button @onclick="() => PourOne(whisky.Id, whisky.Name, whisky.Type)" type="button" class="btn btn-secondary">Pour
                                 One</button></td>
                     </tr>
