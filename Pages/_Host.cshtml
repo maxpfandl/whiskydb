@@ -77,9 +77,10 @@
                 $(table).DataTable({
                     "paging": false,
                     "info": false,
-                    "order": [[0, "desc"]],
+                    "order": [[0, "asc"]],
                     "columnDefs": [
-                        { "orderable": false, "targets": [1,2,3] }
+                        { "orderable": false, "targets": [1,2] },
+                        { "type": "html-num-fmt", "targets": [3] }
                     ]
                 });
             });
