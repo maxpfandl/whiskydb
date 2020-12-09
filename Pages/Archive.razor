@@ -41,6 +41,10 @@ else
                             {
                                 <span class="badge badge-secondary">Un-Chillfiltered</span>
                             }
+                            @if (whisky.CaskStrength)
+                            {
+                                <span class="badge badge-secondary">CS</span>
+                            }
                         </td>
                         <td><img height="150px" src="@whisky.ImageUrlTh"></td>
                         <td class="text-right">@whisky.Age</td>

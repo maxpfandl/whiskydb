@@ -22,7 +22,8 @@
     "ImageUrl": "images/75509b6b320a487a9a3718ba3943a1e3.png",
     "Finished": false,
     "UnChillfiltered": false,
-    "ArtColor": false
+    "ArtColor": false,
+    "CaskStrength": false
   },
   {
     "Id": "e642413d-e13c-468b-ac39-7120d0319471",
@@ -47,7 +48,8 @@
     "ImageUrl": "images/1e92d13227834abd966d39353a204520.png",
     "Finished": false,
     "UnChillfiltered": false,
-    "ArtColor": false
+    "ArtColor": false,
+    "CaskStrength": false
   },
   {
     "Id": "e84a39f6-fa9c-4648-8eb0-602b535848cb",
@@ -72,7 +74,8 @@
     "ImageUrl": "images/e59bdbcea4cc492185537914a235b574.png",
     "Finished": false,
     "UnChillfiltered": false,
-    "ArtColor": false
+    "ArtColor": false,
+    "CaskStrength": false
   },
   {
     "Id": "ec2ba841-4252-49be-b72f-cae017f6e94c",
@@ -97,7 +100,8 @@
     "ImageUrl": "images/e42528300f614beeab5db83803965302.png",
     "Finished": false,
     "UnChillfiltered": false,
-    "ArtColor": false
+    "ArtColor": false,
+    "CaskStrength": false
   },
   {
     "Id": "60b8d4fa-c20b-411c-ad25-26512d11dcf6",
@@ -122,7 +126,8 @@
     "ImageUrl": "images/757d7eef66984d8cabd2020611f68361.png",
     "Finished": false,
     "UnChillfiltered": false,
-    "ArtColor": false
+    "ArtColor": false,
+    "CaskStrength": false
   },
   {
     "Id": "2b5477fd-cec3-434e-9bfb-900465911de4",
@@ -147,7 +152,8 @@
     "ImageUrl": "images/16ba0b69bdb24ef29345ab4f511a2ea3.png",
     "Finished": false,
     "UnChillfiltered": false,
-    "ArtColor": false
+    "ArtColor": false,
+    "CaskStrength": false
   },
   {
     "Id": "d91ad618-3b07-4e8a-bf1e-e5b5fda7dfc4",
@@ -172,7 +178,8 @@
     "ImageUrl": "images/3c607d8fa8bf451289adf3a22ef97df1.png",
     "Finished": false,
     "UnChillfiltered": false,
-    "ArtColor": true
+    "ArtColor": true,
+    "CaskStrength": false
   },
   {
     "Id": "09084c4f-e43b-47f3-993b-657dd8fa0925",
@@ -197,7 +204,8 @@
     "ImageUrl": "images/d64e4bdbe714406ab020d8d4867dde3f.png",
     "Finished": false,
     "UnChillfiltered": false,
-    "ArtColor": true
+    "ArtColor": true,
+    "CaskStrength": false
   },
   {
     "Id": "19b63b34-d0d2-42ef-8751-5330d096643e",
@@ -222,7 +230,8 @@
     "ImageUrl": "images/2ee1e2d808a9410586a890f9b49d879b.png",
     "Finished": false,
     "UnChillfiltered": false,
-    "ArtColor": true
+    "ArtColor": true,
+    "CaskStrength": false
   },
   {
     "Id": "1bd75cd0-42c7-4577-86d8-216f3d2ca7f4",
@@ -247,7 +256,8 @@
     "ImageUrl": "images/a61fed0f9f98405081a16a1e30c53fef.png",
     "Finished": false,
     "UnChillfiltered": false,
-    "ArtColor": false
+    "ArtColor": false,
+    "CaskStrength": false
   },
   {
     "Id": "09702b25-40b6-4883-9cdb-0b28307443b7",
@@ -272,7 +282,8 @@
     "ImageUrl": "images/01f5eb06a320490893fd49c376ddb4a4.png",
     "Finished": true,
     "UnChillfiltered": false,
-    "ArtColor": false
+    "ArtColor": false,
+    "CaskStrength": false
   },
   {
     "Id": "53ad49f2-2553-48c5-b5d5-f134d8383016",
@@ -297,7 +308,8 @@
     "ImageUrl": "images/91190ac828154781b15484a508235332.png",
     "Finished": true,
     "UnChillfiltered": false,
-    "ArtColor": false
+    "ArtColor": false,
+    "CaskStrength": false
   },
   {
     "Id": "901cdf6d-19dd-463c-aadf-7de8e9f8a5bb",
@@ -322,7 +334,8 @@
     "ImageUrl": "images/b7ebf01adbea47f38fac826f8493ff8c.png",
     "Finished": true,
     "UnChillfiltered": false,
-    "ArtColor": false
+    "ArtColor": false,
+    "CaskStrength": false
   },
   {
     "Id": "6d63206d-97f1-45ee-8d50-8ca09000f411",
@@ -347,7 +360,8 @@
     "ImageUrl": "images/42bf9f8b7bd14bdf8cb386a3dcec7929.png",
     "Finished": false,
     "UnChillfiltered": false,
-    "ArtColor": false
+    "ArtColor": false,
+    "CaskStrength": false
   },
   {
     "Id": "5efaa046-1cad-4e16-b97d-e7c867e99c4c",
@@ -372,7 +386,8 @@
     "ImageUrl": "images/51668e7bb22142ae93860dc5c7530bc1.png",
     "Finished": false,
     "UnChillfiltered": false,
-    "ArtColor": false
+    "ArtColor": false,
+    "CaskStrength": false
   },
   {
     "Id": "94298e61-3176-4df7-a4cc-493f1eda0441",
@@ -397,7 +412,8 @@
     "ImageUrl": "images/66646e99f93e4c5882f9d029839d4f0a.png",
     "Finished": false,
     "UnChillfiltered": true,
-    "ArtColor": false
+    "ArtColor": false,
+    "CaskStrength": false
   },
   {
     "Id": "a94e0f43-f221-4da2-934a-e1a530e00628",
@@ -422,32 +438,8 @@
     "ImageUrl": "images/71dd4441db17495bbd836567c97cf18f.png",
     "Finished": false,
     "UnChillfiltered": false,
-    "ArtColor": false
-  },
-  {
-    "Id": "d8b615d0-c0bd-4269-bad0-285f5dd9b8a5",
-    "Name": "Glen Keith",
-    "Type": "Speyside Single Malt, Single Cask",
-    "Age": 27,
-    "Alc": 49.40,
-    "Distilled": "1991-06-05T00:00:00",
-    "Botteled": "2018-07-23T00:00:00",
-    "Aquired": "2018-09-27T00:00:00",
-    "Opened": null,
-    "LastPour": null,
-    "PourDates": null,
-    "Pours": null,
-    "Price": 180,
-    "Notes": null,
-    "Nose": null,
-    "Palate": null,
-    "Finish": null,
-    "Rating": null,
-    "ImageUrlTh": "images/a6c4982f2ba844358a79bf018fa852f8_th.png",
-    "ImageUrl": "images/a6c4982f2ba844358a79bf018fa852f8.png",
-    "Finished": false,
-    "UnChillfiltered": false,
-    "ArtColor": false
+    "ArtColor": false,
+    "CaskStrength": false
   },
   {
     "Id": "4eec94d3-5bfd-432a-90e8-21716fff66e8",
@@ -472,32 +464,8 @@
     "ImageUrl": "images/ab19f4021503464fa031c2e9d9ec7195.png",
     "Finished": false,
     "UnChillfiltered": true,
-    "ArtColor": false
-  },
-  {
-    "Id": "e992e4d5-f2ad-4cfd-8872-6f9ffa556b55",
-    "Name": "Ben Nevis",
-    "Type": "Highland Single Malt, Single Cask",
-    "Age": 26,
-    "Alc": 56.50,
-    "Distilled": "1991-07-05T00:00:00",
-    "Botteled": "2017-07-20T00:00:00",
-    "Aquired": "2017-10-20T00:00:00",
-    "Opened": null,
-    "LastPour": null,
-    "PourDates": null,
-    "Pours": null,
-    "Price": 255,
-    "Notes": null,
-    "Nose": null,
-    "Palate": null,
-    "Finish": null,
-    "Rating": null,
-    "ImageUrlTh": "images/e119b08695444ba6a1207f3ba4f49b57_th.png",
-    "ImageUrl": "images/e119b08695444ba6a1207f3ba4f49b57.png",
-    "Finished": false,
-    "UnChillfiltered": false,
-    "ArtColor": false
+    "ArtColor": false,
+    "CaskStrength": false
   },
   {
     "Id": "1e41e5a3-a5cf-4d0b-8957-887731c6b26e",
@@ -522,7 +490,8 @@
     "ImageUrl": "images/02d4f91b7bff47248bbc3522f95de90a.png",
     "Finished": false,
     "UnChillfiltered": false,
-    "ArtColor": false
+    "ArtColor": false,
+    "CaskStrength": false
   },
   {
     "Id": "142ec82a-b741-4fa4-ae76-8f27fece5fc9",
@@ -547,7 +516,8 @@
     "ImageUrl": "images/3aec980a23a644e18588079dbb6f11a7.png",
     "Finished": false,
     "UnChillfiltered": true,
-    "ArtColor": true
+    "ArtColor": true,
+    "CaskStrength": false
   },
   {
     "Id": "cf339753-0ef7-4dc7-a6e6-3b724b9c53ab",
@@ -572,6 +542,59 @@
     "ImageUrl": "images/eb3768819f1f4cafaf6da5b80ae161b7.png",
     "Finished": true,
     "UnChillfiltered": true,
-    "ArtColor": true
+    "ArtColor": true,
+    "CaskStrength": false
+  },
+  {
+    "Id": "d8b615d0-c0bd-4269-bad0-285f5dd9b8a5",
+    "Name": "Glen Keith",
+    "Type": "Speyside Single Malt, Single Cask",
+    "Age": 27,
+    "Alc": 49.40,
+    "Distilled": "1991-06-05T00:00:00",
+    "Botteled": "2018-07-23T00:00:00",
+    "Aquired": "2018-09-27T00:00:00",
+    "Opened": null,
+    "LastPour": null,
+    "PourDates": null,
+    "Pours": null,
+    "Price": 180,
+    "Notes": null,
+    "Nose": null,
+    "Palate": null,
+    "Finish": null,
+    "Rating": null,
+    "ImageUrlTh": "images/a6c4982f2ba844358a79bf018fa852f8_th.png",
+    "ImageUrl": "images/a6c4982f2ba844358a79bf018fa852f8.png",
+    "Finished": false,
+    "UnChillfiltered": false,
+    "ArtColor": false,
+    "CaskStrength": true
+  },
+  {
+    "Id": "e992e4d5-f2ad-4cfd-8872-6f9ffa556b55",
+    "Name": "Ben Nevis",
+    "Type": "Highland Single Malt, Single Cask",
+    "Age": 26,
+    "Alc": 56.50,
+    "Distilled": "1991-07-05T00:00:00",
+    "Botteled": "2017-07-20T00:00:00",
+    "Aquired": "2017-10-20T00:00:00",
+    "Opened": null,
+    "LastPour": null,
+    "PourDates": null,
+    "Pours": null,
+    "Price": 255,
+    "Notes": null,
+    "Nose": null,
+    "Palate": null,
+    "Finish": null,
+    "Rating": null,
+    "ImageUrlTh": "images/e119b08695444ba6a1207f3ba4f49b57_th.png",
+    "ImageUrl": "images/e119b08695444ba6a1207f3ba4f49b57.png",
+    "Finished": false,
+    "UnChillfiltered": false,
+    "ArtColor": false,
+    "CaskStrength": true
   }
 ]

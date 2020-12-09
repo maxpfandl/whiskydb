@@ -27,8 +27,9 @@ namespace whiskyserverapp.Data
         public string ImageUrl { get; set; }
 
         public bool Finished { get; set; }
-        public bool UnChillfiltered{get;set;}
-        public bool ArtColor{get;set;}
+        public bool UnChillfiltered { get; set; }
+        public bool ArtColor { get; set; }
+        public bool CaskStrength { get; set; }
 
         public string GetPoursString()
         {
