@@ -41,6 +41,58 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@700&family=Josefin+Sans&family=Grenze+Gotisch:wght@700&display=swap"
         rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        function DataTableWhiskyIndex(table) {
+            $(document).ready(function () {
+                $(table).DataTable({
+                    "paging": false,
+                    "info": false,
+                    "order": [[5, "desc"]],
+                    "columns": [{
+                        "orderable": true
+                    }, {
+                        "orderable": false
+                    }, {
+                        "orderable": false
+                    }, {
+                        "orderable": true,
+                        "type": "num-fmt"
+                    }, {
+                        "orderable": true,
+                        "type": "html-num-fmt"
+                    }, {
+                        "orderable": true
+                    }, {
+                        "orderable": false
+                    }]
+                });
+            });
+        }
+        function DataTableArchiveIndex(table) {
+            $(document).ready(function () {
+                $(table).DataTable({
+                    "paging": false,
+                    "info": false,
+                    "order": [[0, "desc"]],
+                    "columnDefs": [
+                        { "orderable": false, "targets": [1,2,3] }
+                    ]
+                });
+            });
+        }
+        function TestDataTablesRemove(table) {
+            $(document).ready(function () {
+                $(table).DataTable().destroy();
+                // Removes the datatable wrapper from the dom.
+                var elem = document.querySelector(table + '_wrapper');
+                elem.parentNode.removeChild(elem);
+            });
+        }
+    </script>
 </head>
 
 <body>

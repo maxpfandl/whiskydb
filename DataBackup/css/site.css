@@ -1,18 +1,17 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
-
 html, body {
     /* font-family: 'Yanone Kaffeesatz', sans-serif; */
-    
     font-family: 'Josefin Sans', sans-serif;
     background-color: #b0ffc8;
 }
 
-h2{
+h2 {
     text-align: center;
     font-size: 1.8em;
     margin-bottom: 1rem;
 }
-h1{
+
+h1 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
 }
@@ -20,36 +19,50 @@ h1{
 a, .btn-link {
     color: #581D17;
 }
-a:hover{
+
+a:hover {
     color: #581D17;
     text-decoration: underline;
 }
 
-.badge{
-    margin-left:3px;
+table.dataTable {
+    background-color: #d0f7dc;
+}
+
+table.dataTable tbody tr {
+    background-color: #ebf3ee !important;
+}
+
+input, textarea{
+    background-color: #ebf3ee;
+}
+
+.badge {
+    margin-left: 3px;
 }
 
 .btn-primary {
     color: #fff;
-    background-color:#581D17;
-    border-color:#E38200;
+    background-color: #581D17;
+    border-color: #E38200;
 }
-.btn-primary:hover{
+
+.btn-primary:hover {
     color: #fff;
-    background-color:#7e2c23;
-    border-color:#f09b2c;
+    background-color: #7e2c23;
+    border-color: #f09b2c;
 }
 
 .btn-secondary {
     color: #fff;
-    background-color:#E38200;
-    border-color:#FDEB7B;
+    background-color: #E38200;
+    border-color: #FDEB7B;
 }
 
 .btn-secondary:hover {
     color: #fff;
-    background-color:#fc8f01;
-    border-color:#f3e8a2;
+    background-color: #fc8f01;
+    border-color: #f3e8a2;
 }
 
 .content {
@@ -80,9 +93,9 @@ a:hover{
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}

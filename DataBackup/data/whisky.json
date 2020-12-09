@@ -23,7 +23,8 @@
     "Finished": false,
     "UnChillfiltered": false,
     "ArtColor": false,
-    "CaskStrength": false
+    "CaskStrength": false,
+    "SingleCask": false
   },
   {
     "Id": "e642413d-e13c-468b-ac39-7120d0319471",
@@ -49,7 +50,8 @@
     "Finished": false,
     "UnChillfiltered": false,
     "ArtColor": false,
-    "CaskStrength": false
+    "CaskStrength": false,
+    "SingleCask": false
   },
   {
     "Id": "e84a39f6-fa9c-4648-8eb0-602b535848cb",
@@ -75,7 +77,8 @@
     "Finished": false,
     "UnChillfiltered": false,
     "ArtColor": false,
-    "CaskStrength": false
+    "CaskStrength": false,
+    "SingleCask": false
   },
   {
     "Id": "ec2ba841-4252-49be-b72f-cae017f6e94c",
@@ -101,7 +104,8 @@
     "Finished": false,
     "UnChillfiltered": false,
     "ArtColor": false,
-    "CaskStrength": false
+    "CaskStrength": false,
+    "SingleCask": false
   },
   {
     "Id": "2b5477fd-cec3-434e-9bfb-900465911de4",
@@ -127,7 +131,8 @@
     "Finished": false,
     "UnChillfiltered": false,
     "ArtColor": false,
-    "CaskStrength": false
+    "CaskStrength": false,
+    "SingleCask": false
   },
   {
     "Id": "d91ad618-3b07-4e8a-bf1e-e5b5fda7dfc4",
@@ -153,7 +158,8 @@
     "Finished": false,
     "UnChillfiltered": false,
     "ArtColor": true,
-    "CaskStrength": false
+    "CaskStrength": false,
+    "SingleCask": false
   },
   {
     "Id": "cf339753-0ef7-4dc7-a6e6-3b724b9c53ab",
@@ -179,7 +185,8 @@
     "Finished": true,
     "UnChillfiltered": false,
     "ArtColor": true,
-    "CaskStrength": false
+    "CaskStrength": false,
+    "SingleCask": false
   },
   {
     "Id": "09084c4f-e43b-47f3-993b-657dd8fa0925",
@@ -205,7 +212,8 @@
     "Finished": false,
     "UnChillfiltered": false,
     "ArtColor": true,
-    "CaskStrength": false
+    "CaskStrength": false,
+    "SingleCask": false
   },
   {
     "Id": "19b63b34-d0d2-42ef-8751-5330d096643e",
@@ -231,7 +239,8 @@
     "Finished": false,
     "UnChillfiltered": false,
     "ArtColor": true,
-    "CaskStrength": false
+    "CaskStrength": false,
+    "SingleCask": false
   },
   {
     "Id": "1bd75cd0-42c7-4577-86d8-216f3d2ca7f4",
@@ -257,7 +266,8 @@
     "Finished": false,
     "UnChillfiltered": false,
     "ArtColor": false,
-    "CaskStrength": false
+    "CaskStrength": false,
+    "SingleCask": false
   },
   {
     "Id": "901cdf6d-19dd-463c-aadf-7de8e9f8a5bb",
@@ -283,7 +293,8 @@
     "Finished": true,
     "UnChillfiltered": false,
     "ArtColor": false,
-    "CaskStrength": false
+    "CaskStrength": false,
+    "SingleCask": false
   },
   {
     "Id": "6d63206d-97f1-45ee-8d50-8ca09000f411",
@@ -309,33 +320,8 @@
     "Finished": false,
     "UnChillfiltered": false,
     "ArtColor": false,
-    "CaskStrength": false
-  },
-  {
-    "Id": "94298e61-3176-4df7-a4cc-493f1eda0441",
-    "Name": "Glenlivet",
-    "Type": "Speyside Single Malt, Single Cask",
-    "Age": 10,
-    "Alc": 46,
-    "Distilled": "2007-04-10T00:00:00",
-    "Botteled": "2018-04-03T00:00:00",
-    "Aquired": "2018-09-27T00:00:00",
-    "Opened": null,
-    "LastPour": null,
-    "PourDates": null,
-    "Pours": null,
-    "Price": 75,
-    "Notes": null,
-    "Nose": null,
-    "Palate": null,
-    "Finish": null,
-    "Rating": null,
-    "ImageUrlTh": "images/66646e99f93e4c5882f9d029839d4f0a_th.png",
-    "ImageUrl": "images/66646e99f93e4c5882f9d029839d4f0a.png",
-    "Finished": false,
-    "UnChillfiltered": true,
-    "ArtColor": false,
-    "CaskStrength": false
+    "CaskStrength": false,
+    "SingleCask": false
   },
   {
     "Id": "4eec94d3-5bfd-432a-90e8-21716fff66e8",
@@ -361,7 +347,8 @@
     "Finished": false,
     "UnChillfiltered": true,
     "ArtColor": false,
-    "CaskStrength": false
+    "CaskStrength": false,
+    "SingleCask": false
   },
   {
     "Id": "142ec82a-b741-4fa4-ae76-8f27fece5fc9",
@@ -387,7 +374,8 @@
     "Finished": false,
     "UnChillfiltered": false,
     "ArtColor": true,
-    "CaskStrength": false
+    "CaskStrength": false,
+    "SingleCask": false
   },
   {
     "Id": "d8b615d0-c0bd-4269-bad0-285f5dd9b8a5",
@@ -413,33 +401,8 @@
     "Finished": false,
     "UnChillfiltered": false,
     "ArtColor": false,
-    "CaskStrength": true
-  },
-  {
-    "Id": "e992e4d5-f2ad-4cfd-8872-6f9ffa556b55",
-    "Name": "Ben Nevis",
-    "Type": "Highland Single Malt, Single Cask",
-    "Age": 26,
-    "Alc": 56.50,
-    "Distilled": "1991-07-05T00:00:00",
-    "Botteled": "2017-07-20T00:00:00",
-    "Aquired": "2017-10-20T00:00:00",
-    "Opened": null,
-    "LastPour": null,
-    "PourDates": null,
-    "Pours": null,
-    "Price": 255,
-    "Notes": null,
-    "Nose": null,
-    "Palate": null,
-    "Finish": null,
-    "Rating": null,
-    "ImageUrlTh": "images/e119b08695444ba6a1207f3ba4f49b57_th.png",
-    "ImageUrl": "images/e119b08695444ba6a1207f3ba4f49b57.png",
-    "Finished": false,
-    "UnChillfiltered": false,
-    "ArtColor": false,
-    "CaskStrength": true
+    "CaskStrength": true,
+    "SingleCask": false
   },
   {
     "Id": "5efaa046-1cad-4e16-b97d-e7c867e99c4c",
@@ -465,33 +428,8 @@
     "Finished": false,
     "UnChillfiltered": false,
     "ArtColor": false,
-    "CaskStrength": true
-  },
-  {
-    "Id": "a94e0f43-f221-4da2-934a-e1a530e00628",
-    "Name": "Dailuaine",
-    "Type": "Speyside Single Malt, Single Cask",
-    "Age": 20,
-    "Alc": 52.30,
-    "Distilled": "1998-08-27T00:00:00",
-    "Botteled": "2018-08-31T00:00:00",
-    "Aquired": "2018-09-27T00:00:00",
-    "Opened": null,
-    "LastPour": null,
-    "PourDates": null,
-    "Pours": null,
-    "Price": 130,
-    "Notes": null,
-    "Nose": null,
-    "Palate": null,
-    "Finish": null,
-    "Rating": null,
-    "ImageUrlTh": "images/71dd4441db17495bbd836567c97cf18f_th.png",
-    "ImageUrl": "images/71dd4441db17495bbd836567c97cf18f.png",
-    "Finished": false,
-    "UnChillfiltered": false,
-    "ArtColor": false,
-    "CaskStrength": true
+    "CaskStrength": true,
+    "SingleCask": false
   },
   {
     "Id": "1e41e5a3-a5cf-4d0b-8957-887731c6b26e",
@@ -517,7 +455,8 @@
     "Finished": false,
     "UnChillfiltered": false,
     "ArtColor": false,
-    "CaskStrength": true
+    "CaskStrength": true,
+    "SingleCask": false
   },
   {
     "Id": "60b8d4fa-c20b-411c-ad25-26512d11dcf6",
@@ -543,33 +482,8 @@
     "Finished": false,
     "UnChillfiltered": false,
     "ArtColor": false,
-    "CaskStrength": true
-  },
-  {
-    "Id": "09702b25-40b6-4883-9cdb-0b28307443b7",
-    "Name": "Allt-A-Bhainne",
-    "Type": "Speyside Single Malt, Single Cask",
-    "Age": 20,
-    "Alc": 55.70,
-    "Distilled": null,
-    "Botteled": null,
-    "Aquired": null,
-    "Opened": null,
-    "LastPour": null,
-    "PourDates": null,
-    "Pours": null,
-    "Price": 80,
-    "Notes": "gifted from Martina",
-    "Nose": null,
-    "Palate": null,
-    "Finish": null,
-    "Rating": null,
-    "ImageUrlTh": "images/01f5eb06a320490893fd49c376ddb4a4_th.png",
-    "ImageUrl": "images/01f5eb06a320490893fd49c376ddb4a4.png",
-    "Finished": true,
-    "UnChillfiltered": false,
-    "ArtColor": false,
-    "CaskStrength": true
+    "CaskStrength": true,
+    "SingleCask": false
   },
   {
     "Id": "53ad49f2-2553-48c5-b5d5-f134d8383016",
@@ -595,6 +509,115 @@
     "Finished": true,
     "UnChillfiltered": false,
     "ArtColor": false,
-    "CaskStrength": true
+    "CaskStrength": true,
+    "SingleCask": false
+  },
+  {
+    "Id": "e992e4d5-f2ad-4cfd-8872-6f9ffa556b55",
+    "Name": "Ben Nevis",
+    "Type": "Highland Single Malt, Single Cask",
+    "Age": 26,
+    "Alc": 56.50,
+    "Distilled": "1991-07-05T00:00:00",
+    "Botteled": "2017-07-20T00:00:00",
+    "Aquired": "2017-10-20T00:00:00",
+    "Opened": null,
+    "LastPour": null,
+    "PourDates": null,
+    "Pours": null,
+    "Price": 255,
+    "Notes": null,
+    "Nose": null,
+    "Palate": null,
+    "Finish": null,
+    "Rating": null,
+    "ImageUrlTh": "images/e119b08695444ba6a1207f3ba4f49b57_th.png",
+    "ImageUrl": "images/e119b08695444ba6a1207f3ba4f49b57.png",
+    "Finished": false,
+    "UnChillfiltered": false,
+    "ArtColor": false,
+    "CaskStrength": true,
+    "SingleCask": true
+  },
+  {
+    "Id": "a94e0f43-f221-4da2-934a-e1a530e00628",
+    "Name": "Dailuaine",
+    "Type": "Speyside Single Malt, Single Cask",
+    "Age": 20,
+    "Alc": 52.30,
+    "Distilled": "1998-08-27T00:00:00",
+    "Botteled": "2018-08-31T00:00:00",
+    "Aquired": "2018-09-27T00:00:00",
+    "Opened": null,
+    "LastPour": null,
+    "PourDates": null,
+    "Pours": null,
+    "Price": 130,
+    "Notes": null,
+    "Nose": null,
+    "Palate": null,
+    "Finish": null,
+    "Rating": null,
+    "ImageUrlTh": "images/71dd4441db17495bbd836567c97cf18f_th.png",
+    "ImageUrl": "images/71dd4441db17495bbd836567c97cf18f.png",
+    "Finished": false,
+    "UnChillfiltered": false,
+    "ArtColor": false,
+    "CaskStrength": true,
+    "SingleCask": true
+  },
+  {
+    "Id": "94298e61-3176-4df7-a4cc-493f1eda0441",
+    "Name": "Glenlivet",
+    "Type": "Speyside Single Malt, Single Cask",
+    "Age": 10,
+    "Alc": 46,
+    "Distilled": "2007-04-10T00:00:00",
+    "Botteled": "2018-04-03T00:00:00",
+    "Aquired": "2018-09-27T00:00:00",
+    "Opened": null,
+    "LastPour": null,
+    "PourDates": null,
+    "Pours": null,
+    "Price": 75,
+    "Notes": null,
+    "Nose": null,
+    "Palate": null,
+    "Finish": null,
+    "Rating": null,
+    "ImageUrlTh": "images/66646e99f93e4c5882f9d029839d4f0a_th.png",
+    "ImageUrl": "images/66646e99f93e4c5882f9d029839d4f0a.png",
+    "Finished": false,
+    "UnChillfiltered": true,
+    "ArtColor": false,
+    "CaskStrength": false,
+    "SingleCask": true
+  },
+  {
+    "Id": "09702b25-40b6-4883-9cdb-0b28307443b7",
+    "Name": "Allt-A-Bhainne",
+    "Type": "Speyside Single Malt, Single Cask",
+    "Age": 20,
+    "Alc": 55.70,
+    "Distilled": null,
+    "Botteled": null,
+    "Aquired": null,
+    "Opened": null,
+    "LastPour": null,
+    "PourDates": null,
+    "Pours": null,
+    "Price": 80,
+    "Notes": "gifted from Martina",
+    "Nose": null,
+    "Palate": null,
+    "Finish": null,
+    "Rating": null,
+    "ImageUrlTh": "images/01f5eb06a320490893fd49c376ddb4a4_th.png",
+    "ImageUrl": "images/01f5eb06a320490893fd49c376ddb4a4.png",
+    "Finished": true,
+    "UnChillfiltered": false,
+    "ArtColor": false,
+    "CaskStrength": true,
+    "SingleCask": true
   }
 ]

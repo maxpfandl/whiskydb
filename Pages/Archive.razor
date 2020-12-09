@@ -1,6 +1,8 @@
 @page "/archive"
 @using Data
 @inject WhiskyService WhiskyService
+@inject IJSRuntime JSRuntime
+@implements IDisposable
 
 @if (_whiskys == null)
 {
@@ -18,7 +20,7 @@ else
 else
 {
     <div class="table-responsive">
-        <table class="table">
+        <table class="table" id="whiskyarchive">
             <thead>
                 <tr>
                     <th scope="col">Name</th>
@@ -68,6 +70,16 @@ else
         var whiskys = await WhiskyService.GetWhiskys(true);
         whiskys.RemoveAll(p => !p.Finished);
         _whiskys = whiskys;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(firstRender)
+            await JSRuntime.InvokeAsync<object>("DataTableArchiveIndex", "#whiskyarchive");
+    }
+    void IDisposable.Dispose()
+    {
+        JSRuntime.InvokeAsync<object>("TestDataTablesRemove", "#whiskyarchive");
     }
 
 }

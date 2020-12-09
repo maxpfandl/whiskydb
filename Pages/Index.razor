@@ -1,6 +1,8 @@
 @page "/"
 @using Data
 @inject WhiskyService WhiskyService
+@inject IJSRuntime JSRuntime
+@implements IDisposable
 
 @if (_whiskys == null)
 {
@@ -18,7 +20,7 @@ else
 else
 {
     <div class="table-responsive">
-        <table class="table">
+        <table class="table" id="whiskyindex">
             <thead>
                 <tr>
                     <th scope="col">Name</th>
@@ -55,9 +57,12 @@ else
                         </td>
                         <td><img height="150px" src="@whisky.ImageUrlTh"></td>
                         <td class="text-right">@whisky.Age</td>
-                        <td class="text-right">@whisky.Price?.ToString("###.00")&nbsp;€</td>
-                        <td><nobr>@whisky.LastPour?.ToString("yyyy-MM-dd")</nobr> @whisky.GetPoursString()</td>
-                        <td><button @onclick="() => PourOne(whisky.Id, whisky.Name, whisky.Type)" type="button" class="btn btn-secondary">Pour
+                        <td class="text-right"><nobr>@whisky.Price?.ToString("###.00") €</nobr></td>
+                        <td>
+                            <nobr>@whisky.LastPour?.ToString("yyyy-MM-dd")</nobr> @whisky.GetPoursString()
+                        </td>
+                        <td><button @onclick="() => PourOne(whisky.Id, whisky.Name, whisky.Type)" type="button"
+                                class="btn btn-secondary">Pour
                                 One</button></td>
                     </tr>
                 }
@@ -103,8 +108,19 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+
         await WhiskyService.CleanImages();
         _whiskys = await WhiskyService.GetWhiskys();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(firstRender)
+            await JSRuntime.InvokeAsync<object>("DataTableWhiskyIndex", "#whiskyindex");
+    }
+    void IDisposable.Dispose()
+    {
+        JSRuntime.InvokeAsync<object>("TestDataTablesRemove", "#whiskyindex");
     }
 
     private async void PourOne(string id, string name, string type)
