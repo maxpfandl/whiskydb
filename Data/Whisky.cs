@@ -35,6 +35,15 @@ namespace whiskyserverapp.Data
             else return "";
         }
 
+        public string GetFinishedString()
+        {
+            if (Finished && LastPour.HasValue)
+                return $"Finished on {LastPour.Value.ToString("yyyy-MM-dd")}";
+            else if (Finished)
+                return "Finished";
+            else return "Still there";
+        }
+
         public int CompareTo(Whisky other)
         {
 

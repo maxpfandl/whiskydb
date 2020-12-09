@@ -86,7 +86,7 @@ else
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Finished:</label>
-                        <InputCheckbox style="margin-top:10px" class="col-sm-1" @bind-Value="whisky.Finished" />
+                        <button type="button" @onclick="() => ToggleFinished()" class="btn btn-sm btn-secondary">@whisky.GetFinishedString()</button>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Image:</label>
@@ -146,6 +146,11 @@ else
     private async void DeleteWhisky(string id)
     {
         showModal = true;
+    }
+
+    private async void ToggleFinished()
+    {
+        whisky.Finished = !whisky.Finished;
     }
     private async Task HandleValidSubmit()
     {
