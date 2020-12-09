@@ -17,7 +17,7 @@ namespace whiskyserverapp.Data
         public WhiskyService()
         {
             var path = Directory.GetCurrentDirectory();
-            _whiskyFile = Path.Combine(path, "wwwroot", "whisky.json");
+            _whiskyFile = Path.Combine(path, "wwwroot", "data", "whisky.json");
             _imagePath = Path.Combine(path, "wwwroot", "images");
         }
 

@@ -8,7 +8,7 @@ wsl rsync -a -v ttrss:/var/dotnet/whiskydb/wwwroot/* /mnt/d/Documents/Developmen
 rmdir /q /s d:\Documents\Development\publishfolder\
 dotnet publish -c Release -o d:\Documents\Development\publishfolder\ -r linux-x64 --self-contained false
 rmdir /q /s d:\Documents\Development\publishfolder\wwwroot\images\
-del d:\Documents\Development\publishfolder\wwwroot\whisky.json
+del d:\Documents\Development\publishfolder\wwwroot\data\whisky.json
 cd d:\Documents\Development\publishfolder\
 scp -r * ttrss:/home/madmap/tmp/whis
 ssh ttrss '/home/madmap/tmp/deploywhis.sh'
