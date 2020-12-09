@@ -38,15 +38,15 @@ else
                         <td>@whisky.Type; <nobr>@whisky.Alc% ABV</nobr>
                             @if (whisky.ArtColor)
                             {
-                                <span class="badge badge-secondary">Colored</span>
+                                <span class="badge badge-secondary" title="Artificial Color">AC</span>
                             }
                             @if (whisky.UnChillfiltered)
                             {
-                                <span class="badge badge-secondary">Un-Chillfiltered</span>
+                                <span class="badge badge-secondary" title="Un-Chillfiltered">UCC</span>
                             }
                             @if (whisky.CaskStrength)
                             {
-                                <span class="badge badge-secondary">CS</span>
+                                <span class="badge badge-secondary" title="Cask Strength">CS</span>
                             }
                         </td>
                         <td><img height="150px" src="@whisky.ImageUrlTh"></td>
