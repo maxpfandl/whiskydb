@@ -217,6 +217,10 @@ UpgradeLog*.htm
 # Business Intelligence projects
 *.rdl.data
 *.bim.layout
+wwwroot/images/**
+
+
+
 *.bim_*.settings
 
 # Microsoft Fakes

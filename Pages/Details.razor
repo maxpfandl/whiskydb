@@ -106,7 +106,12 @@ else
                         <label class="col-sm-3 col-form-label">Image:</label>
                         <InputFile class="col-sm-8" OnChange="@OnInputFileChange"></InputFile> @error
                     </div>
-                    <button type="submit" class="btn btn-primary">Update Whisky</button>
+                    <button disabled="@submitDisabled" type="submit" class="btn btn-primary">
+                        Update Whisky
+                        @if(submitDisabled){
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        }
+                    </button>
                     <button type="button" @onclick="() => DeleteWhisky(whisky.Id)" class="btn btn-danger">Delete
                         Whisky</button>
                     <br />
@@ -151,6 +156,8 @@ else
     private Whisky whisky;
     private string error;
 
+    private bool submitDisabled = false;
+
     private bool showModal = false;
 
     protected override async Task OnInitializedAsync()
@@ -176,10 +183,13 @@ else
     {
         try
         {
+            submitDisabled = true;
             var files = await WhiskyService.SaveImage(e.File);
             whisky.ImageUrl = files.Item1;
 
             whisky.ImageUrlTh = files.Item2;
+            
+            submitDisabled = false;
         }
         catch (Exception ex)
         {

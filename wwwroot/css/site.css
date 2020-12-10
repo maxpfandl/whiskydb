@@ -59,6 +59,11 @@ input, textarea{
     border-color: #FDEB7B;
 }
 
+.btn-primary:disabled {
+    background-color: gray;
+    border-color: darkgray;
+}
+
 .btn-secondary:hover {
     color: #fff;
     background-color: #fc8f01;
