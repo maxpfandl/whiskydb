@@ -68,7 +68,6 @@ else
     protected override async Task OnInitializedAsync()
     {
         var whiskys = await WhiskyService.GetWhiskys(true);
-        whiskys.RemoveAll(p => !p.Finished);
         _whiskys = whiskys;
     }
 

@@ -21,15 +21,10 @@ namespace whiskyserverapp.Data
             _imagePath = Path.Combine(path, "wwwroot", "images");
         }
 
-        public async Task<List<Whisky>> GetWhiskys(bool includeFinished = false)
+        public async Task<List<Whisky>> GetWhiskys(bool archive = false)
         {
-
             var whiskys = ReadAll();
-            if (!includeFinished)
-            {
-                whiskys.RemoveAll(p => p.Finished);
-            }
-            whiskys.Sort();
+            whiskys.RemoveAll(p => p.Finished != archive);
             return whiskys;
         }
 
@@ -97,7 +92,7 @@ namespace whiskyserverapp.Data
                 whisky.Opened = DateTime.Now;
             }
             var result = WriteAll(whiskeys);
-            result.Sort();
+            result.RemoveAll(p => p.Finished);
             return result;
         }
 
@@ -153,6 +148,7 @@ namespace whiskyserverapp.Data
                 {
                     var whiskeyString = File.ReadAllText(_whiskyFile);
                     var whiskeys = JsonSerializer.Deserialize<List<Whisky>>(whiskeyString);
+                    whiskeys.Sort();
                     return whiskeys;
                 }
                 else return new List<Whisky>();

@@ -62,15 +62,6 @@ namespace whiskyserverapp.Data
             if (this.LastPour.HasValue)
                 return -1;
 
-            if (other.Age.HasValue && this.Age.HasValue)
-                return other.Age.Value - this.Age.Value;
-
-            if (other.Age.HasValue)
-                return 1;
-
-            if (this.Age.HasValue)
-                return -1;
-
             return 0;
         }
     }

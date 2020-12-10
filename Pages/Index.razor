@@ -59,7 +59,7 @@ else
                         <td class="text-right">@whisky.Age</td>
                         <td class="text-right"><nobr>@whisky.Price?.ToString("###.00") €</nobr></td>
                         <td>
-                            <nobr>@whisky.LastPour?.ToString("yyyy-MM-dd")</nobr> @whisky.GetPoursString()
+                            <nobr>@whisky.LastPour?.ToString("yy-MM-dd HH:mm")</nobr> @whisky.GetPoursString()
                         </td>
                         <td><button @onclick="() => PourOne(whisky.Id, whisky.Name, whisky.Type)" type="button"
                                 class="btn btn-secondary">Pour
@@ -137,5 +137,7 @@ else
         _whiskys = await WhiskyService.PourOne(_id);
         StateHasChanged();
         showModal = false;
+        await JSRuntime.InvokeAsync<object>("TestDataTablesRemove", "#whiskyindex");
+        await JSRuntime.InvokeAsync<object>("DataTableWhiskyIndex", "#whiskyindex");
     }
 }
