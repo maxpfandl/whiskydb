@@ -136,8 +136,9 @@ else
     {
         _whiskys = await WhiskyService.PourOne(_id);
         StateHasChanged();
-        showModal = false;
         await JSRuntime.InvokeAsync<object>("TestDataTablesRemove", "#whiskyindex");
         await JSRuntime.InvokeAsync<object>("DataTableWhiskyIndex", "#whiskyindex");
+        await JSRuntime.InvokeAsync<object>("ScrollToTop");
+        showModal = false;
     }
 }
