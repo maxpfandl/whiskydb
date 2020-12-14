@@ -26,12 +26,15 @@ a:hover {
 }
 
 table.dataTable {
-    background-color: #d0f7dc;
+    background-color: #b1f5c5;
 }
 
 table.dataTable tbody tr {
-    background-color: #ebf3ee !important;
+    /* background-color: #ebf3ee !important; */
 }
+
+table.dataTable tr.odd { background-color: #ebf3ee;  }
+table.dataTable tr.even{ background-color: #d0f7dc; }
 
 input, textarea{
     background-color: #ebf3ee;
