@@ -28,7 +28,7 @@ else
                     <th scope="col">Image</th>
                     <th class="text-right" scope="col">Age</th>
                     <th class="text-right" scope="col">Price</th>
-                    <th class="text-right" scope="col">Rating</th>
+                    <th class="text-center" scope="col">Rating</th>
                     <th class="text-right" scope="col">Last Pour</th>
                     <th scope="col"></th>
                 </tr>
@@ -59,7 +59,7 @@ else
                         <td><img height="150px" src="@whisky.ImageUrlTh"></td>
                         <td class="text-right">@whisky.Age</td>
                         <td class="text-right"><nobr>@whisky.Price?.ToString("###.00") €</nobr></td>
-                        <td class="text-right"><nobr>@whisky.Rating</nobr></td>
+                        <td class="text-center">@whisky.Rating</td>
                         <td class="text-right" scope="col">
                             <nobr>@whisky.LastPour?.ToString("yy-MM-dd HH:mm")</nobr> @whisky.GetPoursString()
                         </td>

@@ -27,6 +27,7 @@ else
                     <th scope="col">Type</th>
                     <th scope="col">Image</th>
                     <th class="text-right" scope="col">Age</th>
+                    <th class="text-center" scope="col">Rating</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,6 +55,9 @@ else
                         </td>
                         <td><img height="150px" src="@whisky.ImageUrlTh"></td>
                         <td class="text-right">@whisky.Age</td>
+                        <td class="text-center">
+                            @whisky.Rating
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -73,7 +77,7 @@ else
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if(firstRender)
+        if (firstRender)
             await JSRuntime.InvokeAsync<object>("DataTableArchiveIndex", "#whiskyarchive");
     }
     void IDisposable.Dispose()
