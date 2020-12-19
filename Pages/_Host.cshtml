@@ -135,13 +135,17 @@
                 $(table).show();
             });
         }
+
+        function TableRedraw(table){
+            $(table).DataTable().draw();
+        }
         function TestDataTablesRemove(table) {
-            @* $(document).ready(function () {
+            $(document).ready(function () {
                     $(table).DataTable().destroy();
                     // Removes the datatable wrapper from the dom.
                     var elem = document.querySelector(table + '_wrapper');
                     elem.parentNode.removeChild(elem);
-                    }); *@
+                    });
         }
 
         function ScrollToTop() {

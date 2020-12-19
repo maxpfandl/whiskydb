@@ -2,6 +2,7 @@
 @using Data
 @inject WhiskyService WhiskyService
 @inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
 @implements IDisposable
 
 @if (_whiskys == null)
@@ -140,7 +141,9 @@ else
         StateHasChanged();
         await JSRuntime.InvokeAsync<object>("TestDataTablesRemove", "#whiskyindex");
         await JSRuntime.InvokeAsync<object>("DataTableWhiskyIndex", "#whiskyindex");
+        @* await JSRuntime.InvokeAsync<object>("TableRedraw", "#whiskyindex"); *@
         await JSRuntime.InvokeAsync<object>("ScrollToTop");
         showModal = false;
+        @* NavigationManager.NavigateTo("/"); *@
     }
 }
