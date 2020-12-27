@@ -5,6 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace whiskyserverapp.Data
 {
@@ -14,9 +18,12 @@ namespace whiskyserverapp.Data
         private string _whiskyFile;
         private string _imagePath;
         private object _lock = new object();
-        public WhiskyService()
+
+        private readonly AuthenticationStateProvider _authenticationStateProvider;
+        public WhiskyService(AuthenticationStateProvider authenticationStateProvider)
         {
             var path = Directory.GetCurrentDirectory();
+            _authenticationStateProvider = authenticationStateProvider;
             _whiskyFile = Path.Combine(path, "wwwroot", "data", "whisky.json");
             _imagePath = Path.Combine(path, "wwwroot", "images");
         }
@@ -67,56 +74,83 @@ namespace whiskyserverapp.Data
         public async Task<List<Whisky>> DeleteWhisky(string id)
         {
             var whiskeys = ReadAll();
+            if (await UserIsAdmin())
+            {
 
-            whiskeys.RemoveAll(p => p.Id == id);
+                whiskeys.RemoveAll(p => p.Id == id);
 
-            return WriteAll(whiskeys);
+                return WriteAll(whiskeys);
+            }
+            return whiskeys;
 
         }
-
         public async Task<List<Whisky>> PourOne(string id)
         {
             var whiskeys = ReadAll();
-            var whisky = whiskeys.Find(p => p.Id == id);
-            whisky.LastPour = DateTime.Now;
-            if (whisky.PourDates == null)
+            if (await UserIsAdmin())
             {
-                whisky.PourDates = new List<DateTime>();
+                var whisky = whiskeys.Find(p => p.Id == id);
+                whisky.LastPour = DateTime.Now;
+                if (whisky.PourDates == null)
+                {
+                    whisky.PourDates = new List<DateTime>();
+                }
+                whisky.PourDates.Add(DateTime.Now);
+                if (whisky.Pours.HasValue)
+                    whisky.Pours = whisky.Pours.Value + 1;
+                else whisky.Pours = 1;
+                if (!whisky.Opened.HasValue)
+                {
+                    whisky.Opened = DateTime.Now;
+                }
+                var result = WriteAll(whiskeys);
+                result.RemoveAll(p => p.Finished);
+                return result;
             }
-            whisky.PourDates.Add(DateTime.Now);
-            if (whisky.Pours.HasValue)
-                whisky.Pours = whisky.Pours.Value + 1;
-            else whisky.Pours = 1;
-            if (!whisky.Opened.HasValue)
-            {
-                whisky.Opened = DateTime.Now;
-            }
-            var result = WriteAll(whiskeys);
-            result.RemoveAll(p => p.Finished);
-            return result;
+            return whiskeys;
         }
 
         public async Task<List<Whisky>> UpdateWhisky(Whisky toUpdate)
         {
+
             var whiskeys = ReadAll();
 
-            whiskeys.RemoveAll(p => p.Id == toUpdate.Id);
+            if (await UserIsAdmin())
+            {
 
-            whiskeys.Add(toUpdate);
+                whiskeys.RemoveAll(p => p.Id == toUpdate.Id);
 
-            return WriteAll(whiskeys);
+                whiskeys.Add(toUpdate);
+
+                return WriteAll(whiskeys);
+            }
+            return whiskeys;
         }
 
         public async Task<List<Whisky>> AddWhisky(Whisky whiskyToAdd)
         {
-
             var whiskeys = ReadAll();
-            whiskeys.Add(whiskyToAdd);
-            return WriteAll(whiskeys);
+            if (await UserIsAdmin())
+            {
+                whiskeys.Add(whiskyToAdd);
+                return WriteAll(whiskeys);
+            }
+            return whiskeys;
+
+        }
+
+        private async Task<bool> UserIsAdmin()
+        {
+            var status = await _authenticationStateProvider.GetAuthenticationStateAsync();
+            return status.User.IsInRole("Admin");
         }
 
         public async Task<Tuple<string, string>> SaveImage(IBrowserFile file)
         {
+            if (!await UserIsAdmin())
+            {
+                return null;
+            }
             string guid = Guid.NewGuid().ToString().Replace("-", "");
             var fileName = guid + ".png";
             var fileNameThumb = guid + "_th.png";

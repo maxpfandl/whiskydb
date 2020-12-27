@@ -3,7 +3,10 @@
 @inject WhiskyService WhiskyService
 @inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
 @implements IDisposable
+
 
 @if (_whiskys == null)
 {
@@ -64,7 +67,7 @@ else
                         <td class="text-right" scope="col">
                             <nobr>@whisky.LastPour?.ToString("yy-MM-dd HH:mm")</nobr> @whisky.GetPoursString()
                         </td>
-                        <td><button @onclick="() => PourOne(whisky.Id, whisky.Name, whisky.Type)" type="button"
+                        <td><button disabled="@IsNotAdmin()" @onclick="() => PourOne(whisky.Id, whisky.Name, whisky.Type)" type="button"
                                 class="btn btn-secondary">Pour
                                 One</button></td>
                     </tr>
@@ -132,6 +135,12 @@ else
         _id = id;
         _name = $"{name} {type}";
 
+    }
+
+        private bool IsNotAdmin()
+    {
+        var authState = AuthenticationStateProvider.GetAuthenticationStateAsync().Result;
+        return !authState.User.IsInRole("Admin");
     }
     void ModalShow() => showModal = true;
     void ModalCancel() => showModal = false;

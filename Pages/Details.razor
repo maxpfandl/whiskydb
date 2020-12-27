@@ -3,6 +3,8 @@
 @using whiskyserverapp.Data
 @inject WhiskyService WhiskyService
 @inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 @if (whisky == null)
 {
@@ -14,111 +16,120 @@ else
     <div class="container">
         <div class="row">
             <div class="col-lg">
-                <a href="@whisky.ImageUrl" target="_blank"><img width="100%" class="img-responsive"  src="@whisky.ImageUrl"></a>
+                <a href="@whisky.ImageUrl" target="_blank"><img width="100%" class="img-responsive"
+                        src="@whisky.ImageUrl"></a>
             </div>
             <div class="col-lg">
                 <EditForm Model="@whisky" OnValidSubmit="@HandleValidSubmit">
                     <DataAnnotationsValidator />
                     <ValidationSummary />
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Name:</label>
-                        <InputText class="col-sm-8" @bind-Value="whisky.Name" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Type:</label>
-                        <InputText class="col-sm-8" @bind-Value="whisky.Type" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Age:</label>
-                        <InputNumber class="col-sm-8" @bind-Value="whisky.Age" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Alcohol:</label>
-                        <InputNumber class="col-sm-8" @bind-Value="whisky.Alc" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Attributes:</label>
-                        <div class="btn-group btn-group-sm col-sm-8" role="group">
-                            <button type="button" class="btn btn-secondary @((whisky.ArtColor ? "active" : ""))"
-                                @onclick="() => ToggleColor()">Art. Color</button>
-                            <button type="button" class="btn btn-secondary @((whisky.UnChillfiltered ? "active" : ""))"
-                                @onclick="() => ToggleChill()">Un-Chillfiltered</button>
-                            <button type="button" class="btn btn-secondary @((whisky.CaskStrength ? "active" : ""))"
-                                @onclick="() => ToggleCS()">Cask Strength</button>
-                            <button type="button" class="btn btn-secondary @((whisky.SingleCask ? "active" : ""))"
-                                @onclick="() => ToggleSC()">Single Cask</button>
+
+                    <fieldset disabled="@IsNotAdmin()">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Name:</label>
+                            <InputText class="col-sm-8" @bind-Value="whisky.Name" />
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Aquired:</label>
-                        <InputDate class="col-sm-8" @bind-Value="whisky.Aquired" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Opened:</label>
-                        <InputDate class="col-sm-8" @bind-Value="whisky.Opened" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">LastPour:</label>
-                        <InputDate class="col-sm-8" @bind-Value="whisky.LastPour" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Pours:</label>
-                        <InputNumber class="col-sm-8" @bind-Value="whisky.Pours" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Price:</label>
-                        <InputNumber class="col-sm-8" @bind-Value="whisky.Price" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Notes:</label>
-                        <InputTextArea class="col-sm-8" @bind-Value="whisky.Notes" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Nose:</label>
-                        <InputTextArea class="col-sm-8" @bind-Value="whisky.Nose" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Palate:</label>
-                        <InputTextArea class="col-sm-8" @bind-Value="whisky.Palate" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Finish:</label>
-                        <InputTextArea class="col-sm-8" @bind-Value="whisky.Finish" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Rating:</label>
-                        <InputText class="col-sm-8" @bind-Value="whisky.Rating" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Distilled:</label>
-                        <InputDate class="col-sm-8" @bind-Value="whisky.Distilled" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Botteled:</label>
-                        <InputDate class="col-sm-8" @bind-Value="whisky.Botteled" />
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Finished:</label>
-                        <button type="button" @onclick="() => ToggleFinished()"
-                            class="btn btn-sm btn-secondary  @((whisky.Finished ? "active" : ""))">@whisky.GetFinishedString()</button>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Image:</label>
-                        <InputFile class="col-sm-8" OnChange="@OnInputFileChange"></InputFile> @error
-                    </div>
-                    <button disabled="@submitDisabled" type="submit" class="btn btn-primary">
-                        Update Whisky
-                        @if(submitDisabled){
-                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        }
-                    </button>
-                    <button type="button" @onclick="() => DeleteWhisky(whisky.Id)" class="btn btn-danger">Delete
-                        Whisky</button>
-                    <br />
-                </EditForm>
-            </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Type:</label>
+                            <InputText class="col-sm-8" @bind-Value="whisky.Type" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Age:</label>
+                            <InputNumber class="col-sm-8" @bind-Value="whisky.Age" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Alcohol:</label>
+                            <InputNumber class="col-sm-8" @bind-Value="whisky.Alc" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Attributes:</label>
+                            <div class="btn-group btn-group-sm col-sm-8" role="group">
+                                <button type="button" class="btn btn-secondary @((whisky.ArtColor ? "active" : ""))"
+                                    @onclick="() => ToggleColor()">Art. Color</button>
+                                <button type="button" class="btn btn-secondary @((whisky.UnChillfiltered ? "active" : ""))"
+                                    @onclick="() => ToggleChill()">Un-Chillfiltered</button>
+                                <button type="button" class="btn btn-secondary @((whisky.CaskStrength ? "active" : ""))"
+                                    @onclick="() => ToggleCS()">Cask Strength</button>
+                                <button type="button" class="btn btn-secondary @((whisky.SingleCask ? "active" : ""))"
+                                    @onclick="() => ToggleSC()">Single Cask</button>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Aquired:</label>
+                            <InputDate class="col-sm-8" @bind-Value="whisky.Aquired" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Opened:</label>
+                            <InputDate class="col-sm-8" @bind-Value="whisky.Opened" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">LastPour:</label>
+                            <InputDate class="col-sm-8" @bind-Value="whisky.LastPour" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Pours:</label>
+                            <InputNumber class="col-sm-8" @bind-Value="whisky.Pours" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Price:</label>
+                            <InputNumber class="col-sm-8" @bind-Value="whisky.Price" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Notes:</label>
+                            <InputTextArea class="col-sm-8" @bind-Value="whisky.Notes" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Nose:</label>
+                            <InputTextArea class="col-sm-8" @bind-Value="whisky.Nose" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Palate:</label>
+                            <InputTextArea class="col-sm-8" @bind-Value="whisky.Palate" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Finish:</label>
+                            <InputTextArea class="col-sm-8" @bind-Value="whisky.Finish" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Rating:</label>
+                            <InputText class="col-sm-8" @bind-Value="whisky.Rating" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Distilled:</label>
+                            <InputDate class="col-sm-8" @bind-Value="whisky.Distilled" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Botteled:</label>
+                            <InputDate class="col-sm-8" @bind-Value="whisky.Botteled" />
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Finished:</label>
+                            <button type="button" @onclick="() => ToggleFinished()"
+                                class="btn btn-sm btn-secondary  @((whisky.Finished ? "active" : ""))">@whisky.GetFinishedString()</button>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Image:</label>
+                            <InputFile class="col-sm-8" OnChange="@OnInputFileChange"></InputFile> @error
+                        </div>
+                    </fieldset>
+                    <AuthorizeView Roles="Admin">
+                        <Authorized Context="buttons">
+                            <button disabled="@submitDisabled" type="submit" class="btn btn-primary">
+                                Update Whisky
+                                @if (submitDisabled)
+                            {
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            }
+                        </button>
+                        <button type="button" @onclick="() => DeleteWhisky(whisky.Id)" class="btn btn-danger">Delete
+                            Whisky</button>
+                    </Authorized>
+                </AuthorizeView>
+                <br />
+            </EditForm>
         </div>
     </div>
+</div>
 }
 
 @if (showModal)
@@ -139,10 +150,12 @@ else
                 </div>
 
                 <!-- Modal footer -->
+
                 <div class="modal-footer">
                     <button type="button" class="btn" @onclick="@ModalCancel">Cancel</button>
                     <button type="button" class="btn btn-danger" @onclick=@ModalOk>Yes</button>
                 </div>
+
 
             </div>
         </div>
@@ -170,6 +183,12 @@ else
         showModal = true;
     }
 
+    private bool IsNotAdmin()
+    {
+        var authState = AuthenticationStateProvider.GetAuthenticationStateAsync().Result;
+        return !authState.User.IsInRole("Admin");
+    }
+
     private async void ToggleFinished()
     {
         whisky.Finished = !whisky.Finished;
@@ -188,7 +207,7 @@ else
             whisky.ImageUrl = files.Item1;
 
             whisky.ImageUrlTh = files.Item2;
-            
+
             submitDisabled = false;
         }
         catch (Exception ex)
@@ -215,7 +234,7 @@ else
     {
         whisky.UnChillfiltered = !whisky.UnChillfiltered;
     }
-    
+
     private async Task ToggleCS()
     {
         whisky.CaskStrength = !whisky.CaskStrength;

@@ -1,7 +1,9 @@
 @page "/addwhisky"
+@attribute [Authorize(Roles="Admin")]
 @using whiskyserverapp.Data
 @inject NavigationManager NavigationManager
 @inject WhiskyService WhiskyService
+
 <h1>Add Whisky</h1>
 
 <EditForm Model="@whisky" OnValidSubmit="@HandleValidSubmit">

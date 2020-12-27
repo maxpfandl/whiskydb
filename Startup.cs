@@ -37,12 +37,13 @@ namespace whiskyserverapp
                 options.UseSqlite(
                 Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddSingleton<WhiskyService>();
+            services.AddScoped<WhiskyService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
