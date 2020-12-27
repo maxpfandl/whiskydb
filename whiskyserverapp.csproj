@@ -3,8 +3,21 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <NoWarn>1998</NoWarn>
+    <UserSecretsId>aspnet-blazortest-C5CAE492-32D1-4338-B1DB-145FF4DA31CE</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <Content Remove="DataBackup\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.1" />
   </ItemGroup>
 </Project>
