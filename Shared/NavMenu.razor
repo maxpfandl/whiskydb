@@ -26,9 +26,17 @@
                     </NavLink>
                 </li>
                 <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="Identity/Account/Logout">
+
+                    <form id="logout" hidden method="post" action="Identity/Account/LogOut">
+                        <button type="submit" class="nav-link btn btn-link">
+                            Log Out
+                        </button>
+                    </form>
+
+                    <NavLink class="nav-link" href="javascript:{}" onclick="document.getElementById('logout').submit(); return false;">
                         <span class="oi oi-account-logout" aria-hidden="true"></span> Log Out
                     </NavLink>
+
                 </li>
             </Authorized>
             <NotAuthorized>
