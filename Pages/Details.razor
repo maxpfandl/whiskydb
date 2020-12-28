@@ -41,19 +41,32 @@ else
                             <label class="col-sm-3 col-form-label">Alcohol:</label>
                             <InputNumber class="col-sm-8" @bind-Value="whisky.Alc" />
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Attributes:</label>
-                            <div class="btn-group btn-group-sm col-sm-8" role="group">
-                                <button type="button" class="btn btn-secondary @((whisky.ArtColor ? "active" : ""))"
-                                    @onclick="() => ToggleColor()">Art. Color</button>
-                                <button type="button" class="btn btn-secondary @((whisky.UnChillfiltered ? "active" : ""))"
-                                    @onclick="() => ToggleChill()">Un-Chillfiltered</button>
-                                <button type="button" class="btn btn-secondary @((whisky.CaskStrength ? "active" : ""))"
-                                    @onclick="() => ToggleCS()">Cask Strength</button>
-                                <button type="button" class="btn btn-secondary @((whisky.SingleCask ? "active" : ""))"
-                                    @onclick="() => ToggleSC()">Single Cask</button>
-                            </div>
-                        </div>
+                        <AuthorizeView Roles="Admin">
+                            <Authorized Context="attributes">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Attributes:</label>
+                                    <div class="btn-group btn-group-sm col-sm-8" role="group">
+                                        <button type="button" class="btn btn-secondary @((whisky.ArtColor ? "active" : ""))"
+                                            @onclick="() => ToggleColor()">Art. Color</button>
+                                        <button type="button"
+                                            class="btn btn-secondary @((whisky.UnChillfiltered ? "active" : ""))"
+                                            @onclick="() => ToggleChill()">Un-Chillfiltered</button>
+                                        <button type="button"
+                                            class="btn btn-secondary @((whisky.CaskStrength ? "active" : ""))"
+                                            @onclick="() => ToggleCS()">Cask Strength</button>
+                                        <button type="button"
+                                            class="btn btn-secondary @((whisky.SingleCask ? "active" : ""))"
+                                            @onclick="() => ToggleSC()">Single Cask</button>
+                                    </div>
+                                </div>
+                            </Authorized>
+                            <NotAuthorized Context="attributes">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Attributes:</label>
+                                    <input class="col-sm-8" type="text" value="@GetAttributes()">
+                                </div>
+                            </NotAuthorized>
+                        </AuthorizeView>
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Aquired:</label>
                             <InputDate class="col-sm-8" @bind-Value="whisky.Aquired" />
@@ -189,6 +202,27 @@ else
         return !authState.User.IsInRole("Admin");
     }
 
+    private string GetAttributes()
+    {
+        string result = "";
+        if (whisky.ArtColor)
+            result += "Art. Color; ";
+        if (whisky.UnChillfiltered)
+            result += "Un-Chillfiltered; ";
+        if (whisky.CaskStrength)
+            result += "Cask Strength; ";
+        if (whisky.SingleCask)
+            result += "Single Cask; ";
+
+        if (result.Length > 0)
+        {
+            result.Trim();
+            result = result.Remove(result.Length - 2);
+        }
+
+        return result;
+
+    }
     private async void ToggleFinished()
     {
         whisky.Finished = !whisky.Finished;
