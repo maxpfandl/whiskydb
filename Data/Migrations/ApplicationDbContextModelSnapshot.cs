@@ -3,9 +3,9 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using whiskyserverapp.Data;
+using whiskydb.Data;
 
-namespace whiskyserverapp.Data.Migrations
+namespace whiskydb.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot

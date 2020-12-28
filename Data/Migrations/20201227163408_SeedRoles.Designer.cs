@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using whiskyserverapp.Data;
+using whiskydb.Data;
 
-namespace whiskyserverapp.Data.Migrations
+namespace whiskydb.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20201227163408_SeedRoles")]

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace whiskyserverapp.Data
+namespace whiskydb.Data
 {
     public class Whisky : IComparable<Whisky>
     {

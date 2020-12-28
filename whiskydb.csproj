@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <NoWarn>1998</NoWarn>
-    <UserSecretsId>aspnet-blazortest-C5CAE492-32D1-4338-B1DB-145FF4DA31CE</UserSecretsId>
   </PropertyGroup>
+  
   <ItemGroup>
     <Content Remove="DataBackup\**" />
   </ItemGroup>

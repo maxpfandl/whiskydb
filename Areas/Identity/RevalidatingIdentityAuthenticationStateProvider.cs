@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace whiskyserverapp.Areas.Identity
+namespace whiskydb.Areas.Identity
 {
     public class RevalidatingIdentityAuthenticationStateProvider<TUser>
         : RevalidatingServerAuthenticationStateProvider where TUser : class

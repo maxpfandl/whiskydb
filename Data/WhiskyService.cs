@@ -10,7 +10,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Authorization;
 
-namespace whiskyserverapp.Data
+namespace whiskydb.Data
 {
 
     public class WhiskyService

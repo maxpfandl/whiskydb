@@ -5,10 +5,10 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using whiskyserverapp.Data;
+using whiskydb.Data;
 
-[assembly: HostingStartup(typeof(whiskyserverapp.Areas.Identity.IdentityHostingStartup))]
-namespace whiskyserverapp.Areas.Identity
+[assembly: HostingStartup(typeof(whiskydb.Areas.Identity.IdentityHostingStartup))]
+namespace whiskydb.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {

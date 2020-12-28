@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace whiskyserverapp.Data.Migrations
+namespace whiskydb.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {
