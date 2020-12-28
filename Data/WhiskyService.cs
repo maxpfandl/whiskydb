@@ -76,8 +76,8 @@ namespace whiskydb.Data
         {
             if (await UserIsAdmin())
             {
-                Whisky toRemove = new Whisky(){Id=id};
-                _context.Whiskys.Remove(toRemove);
+                var whisky = _context.Whiskys.Single(p => p.Id == id);
+                _context.Whiskys.Remove(whisky);
                 await _context.SaveChangesAsync();
             }
             return _context.Whiskys.ToList();

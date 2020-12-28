@@ -115,7 +115,7 @@ else
     protected override async Task OnInitializedAsync()
     {
 
-        await WhiskyService.CleanImages();
+        @* await WhiskyService.CleanImages(); *@
         _whiskys = await WhiskyService.GetWhiskys();
     }
 
