@@ -20,24 +20,26 @@ namespace whiskydb.Data
         private object _lock = new object();
 
         private readonly AuthenticationStateProvider _authenticationStateProvider;
-        public WhiskyService(AuthenticationStateProvider authenticationStateProvider)
+        private ApplicationDbContext _context;
+        public WhiskyService(AuthenticationStateProvider authenticationStateProvider, ApplicationDbContext context)
         {
             var path = Directory.GetCurrentDirectory();
             _authenticationStateProvider = authenticationStateProvider;
+            _context = context;
             _whiskyFile = Path.Combine(path, "wwwroot", "data", "whisky.json");
             _imagePath = Path.Combine(path, "wwwroot", "images");
         }
 
         public async Task<List<Whisky>> GetWhiskys(bool archive = false)
         {
-            var whiskys = ReadAll();
-            whiskys.RemoveAll(p => p.Finished != archive);
+
+            var whiskys = _context.Whiskys.Where(a => a.Finished == archive).ToList();
             return whiskys;
         }
 
         public async Task CleanImages()
         {
-            var whiskeys = ReadAll();
+            var whiskeys = _context.Whiskys;
             var files = Directory.GetFiles(_imagePath);
             foreach (var file in files)
             {
@@ -67,35 +69,27 @@ namespace whiskydb.Data
 
         public async Task<Whisky> GetWhisky(string id)
         {
-            var whiskeys = ReadAll();
-            return whiskeys.Find(p => p.Id == id);
+            return _context.Whiskys.Single(p => p.Id == id);
         }
 
         public async Task<List<Whisky>> DeleteWhisky(string id)
         {
-            var whiskeys = ReadAll();
             if (await UserIsAdmin())
             {
-
-                whiskeys.RemoveAll(p => p.Id == id);
-
-                return WriteAll(whiskeys);
+                Whisky toRemove = new Whisky(){Id=id};
+                _context.Whiskys.Remove(toRemove);
+                await _context.SaveChangesAsync();
             }
-            return whiskeys;
+            return _context.Whiskys.ToList();
 
         }
         public async Task<List<Whisky>> PourOne(string id)
         {
-            var whiskeys = ReadAll();
             if (await UserIsAdmin())
             {
-                var whisky = whiskeys.Find(p => p.Id == id);
+                var whisky = _context.Whiskys.Single(p => p.Id == id);
                 whisky.LastPour = DateTime.Now;
-                if (whisky.PourDates == null)
-                {
-                    whisky.PourDates = new List<DateTime>();
-                }
-                whisky.PourDates.Add(DateTime.Now);
+                whisky.PourDates += DateTime.Now.ToShortDateString()+"||";
                 if (whisky.Pours.HasValue)
                     whisky.Pours = whisky.Pours.Value + 1;
                 else whisky.Pours = 1;
@@ -103,40 +97,30 @@ namespace whiskydb.Data
                 {
                     whisky.Opened = DateTime.Now;
                 }
-                var result = WriteAll(whiskeys);
-                result.RemoveAll(p => p.Finished);
-                return result;
+                await _context.SaveChangesAsync();
             }
-            return whiskeys;
+            return await GetWhiskys(false);
         }
 
-        public async Task<List<Whisky>> UpdateWhisky(Whisky toUpdate)
+        public async Task UpdateWhisky(Whisky toUpdate)
         {
-
-            var whiskeys = ReadAll();
-
             if (await UserIsAdmin())
             {
-
-                whiskeys.RemoveAll(p => p.Id == toUpdate.Id);
-
-                whiskeys.Add(toUpdate);
-
-                return WriteAll(whiskeys);
+                
+                _context.Whiskys.Attach(toUpdate);
+                _context.Entry(toUpdate).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                await _context.SaveChangesAsync();
             }
-            return whiskeys;
+            
         }
 
-        public async Task<List<Whisky>> AddWhisky(Whisky whiskyToAdd)
+        public async Task AddWhisky(Whisky whiskyToAdd)
         {
-            var whiskeys = ReadAll();
             if (await UserIsAdmin())
             {
-                whiskeys.Add(whiskyToAdd);
-                return WriteAll(whiskeys);
+                _context.Whiskys.Add(whiskyToAdd);
+                await _context.SaveChangesAsync();
             }
-            return whiskeys;
-
         }
 
         private async Task<bool> UserIsAdmin()
@@ -174,30 +158,7 @@ namespace whiskydb.Data
             return new Tuple<string, string>($"images/{fileName}", $"images/{fileNameThumb}");
         }
 
-        private List<Whisky> ReadAll()
-        {
-            lock (_lock)
-            {
-                if (File.Exists(_whiskyFile))
-                {
-                    var whiskeyString = File.ReadAllText(_whiskyFile);
-                    var whiskeys = JsonSerializer.Deserialize<List<Whisky>>(whiskeyString);
-                    whiskeys.Sort();
-                    return whiskeys;
-                }
-                else return new List<Whisky>();
-            }
-        }
-        private List<Whisky> WriteAll(List<Whisky> whiskys)
-        {
-            lock (_lock)
-            {
-                JsonSerializerOptions options = new JsonSerializerOptions();
-                options.WriteIndented = true;
-                string json = JsonSerializer.Serialize(whiskys, options);
-                File.WriteAllText(_whiskyFile, json);
-            }
-            return whiskys;
-        }
+
+
     }
 }

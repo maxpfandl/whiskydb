@@ -17,7 +17,7 @@ namespace whiskydb.Data
         public DateTime? Aquired { get; set; }
         public DateTime? Opened { get; set; }
         public DateTime? LastPour { get; set; }
-        public List<DateTime> PourDates { get; set; }
+        public string PourDates { get; set; }
         public int? Pours { get; set; }
         public decimal? Price { get; set; }
         public string Notes { get; set; }

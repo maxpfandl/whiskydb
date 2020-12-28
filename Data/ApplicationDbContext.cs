@@ -9,6 +9,7 @@ namespace whiskydb.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+        public DbSet<Whisky> Whiskys { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

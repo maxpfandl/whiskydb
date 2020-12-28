@@ -44,7 +44,6 @@ namespace whiskydb
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddScoped<WhiskyService>();
-            services.AddSignalR();
             
         }
 
