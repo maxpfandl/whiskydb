@@ -1,8 +1,3 @@
-REM rmdir /q /s \\192.168.0.15\docker\rssfeed\bin\
-REM dotnet publish -c Release -o \\192.168.0.15\docker\rssfeed\bin\
-REM c:\Data\publishfolder\
-
-
 wsl rsync -a -v piServer:/var/dotnet/whiskydb/wwwroot/images/* /mnt/d/Documents/Development/whiskydb/DataBackup/images
 wsl rsync -a -v piServer:/var/dotnet/whiskydb/app.db /mnt/d/Documents/Development/whiskydb/DataBackup/app.db
 

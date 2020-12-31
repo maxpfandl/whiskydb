@@ -65,7 +65,7 @@ else
                         <td class="text-right"><nobr>@whisky.Price?.ToString("###.00") €</nobr></td>
                         <td class="text-center">@whisky.Rating</td>
                         <td class="text-right" scope="col">
-                            <nobr>@whisky.LastPour?.ToLocalTime().ToString("yy-MM-dd HH:mm")</nobr> @whisky.GetPoursString()
+                            <nobr>@whisky.LastPour?.ToString("yy-MM-dd HH:mm")</nobr> @whisky.GetPoursString()
                         </td>
                         <td><button disabled="@IsNotAdmin()" @onclick="() => PourOne(whisky.Id, whisky.Name, whisky.Type)" type="button"
                                 class="btn btn-secondary btn-sm"> @((IsNotAdmin()?"Can't Pour":"Pour One"))</button></td>
