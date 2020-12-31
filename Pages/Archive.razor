@@ -60,7 +60,7 @@ else
                             @whisky.Rating
                         </td>
                         <td class="text-right" scope="col">
-                            <nobr>@whisky.LastPour?.ToString("yy-MM-dd HH:mm")</nobr> @whisky.GetPoursString()
+                            <nobr>@whisky.LastPour?.ToLocalTime().ToString("yy-MM-dd HH:mm")</nobr> @whisky.GetPoursString()
                         </td>
                     </tr>
                 }
