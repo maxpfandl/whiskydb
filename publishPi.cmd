@@ -6,4 +6,4 @@ dotnet publish -c Release -o d:\Documents\Development\publishfolder\ -r ubuntu-a
 
 wsl rsync -a -v /mnt/d/Documents/Development/publishfolder/ piServer:/var/dotnet/whiskydb/
 
-ssh piServer '/home/ubuntu/deployscripts/whisky.sh'
+ssh piServer '/home/madmap/deployscripts/whisky.sh'
