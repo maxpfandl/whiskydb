@@ -2,7 +2,7 @@ wsl rsync -a -v piServer:/var/dotnet/whiskydb/wwwroot/images/* /mnt/d/Documents/
 wsl rsync -a -v piServer:/var/dotnet/whiskydb/app.db /mnt/d/Documents/Development/whiskydb/DataBackup/app.db
 
 rmdir /q /s d:\Documents\Development\publishfolder\
-dotnet publish -c Release -o d:\Documents\Development\publishfolder\ -r ubuntu-arm64
+dotnet publish -c Release -o d:\Documents\Development\publishfolder\ -r ubuntu-arm64 --self-contained false
 
 wsl rsync -a -v /mnt/d/Documents/Development/publishfolder/ piServer:/var/dotnet/whiskydb/
 
