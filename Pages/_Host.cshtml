@@ -9,6 +9,17 @@
 <html lang="en">
 
 <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SSXCT6NTVV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-SSXCT6NTVV');
+    </script>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Whisk(e)y DB</title>
@@ -66,7 +77,7 @@
             }
 
             return function (d, type, row) {
-                if(d === "" || d.startsWith("<div")){
+                if (d === "" || d.startsWith("<div")) {
                     return d;
                 }
                 //Remove % if found in the value
@@ -136,15 +147,15 @@
             });
         }
 
-        function TableRedraw(table){
+        function TableRedraw(table) {
             $(table).DataTable().draw();
         }
         function TestDataTablesRemove(table) {
             $(document).ready(function () {
-                    $(table).DataTable().destroy();
-                    // Removes the datatable wrapper from the dom.
-                    @* var elem = document.querySelector(table + '_wrapper');
-                    elem.parentNode.removeChild(elem); *@
+                $(table).DataTable().destroy();
+                // Removes the datatable wrapper from the dom.
+                @* var elem = document.querySelector(table + '_wrapper');
+                        elem.parentNode.removeChild(elem); *@
                     });
         }
 
