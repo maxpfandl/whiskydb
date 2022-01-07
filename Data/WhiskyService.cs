@@ -83,13 +83,32 @@ namespace whiskydb.Data
             return _context.Whiskys.ToList();
 
         }
+
+        public async Task<List<Whisky>> RebuyWhisky(string id)
+        {
+            if (await UserIsAdmin())
+            {
+                var whisky = _context.Whiskys.Single(p => p.Id == id);
+                whisky.Id = Guid.NewGuid().ToString();
+                whisky.Finished = false;
+                whisky.Pours = null;
+                whisky.LastPour = null;
+                whisky.PourDates = "";
+                whisky.Opened = null;
+                whisky.Aquired = DateTime.Now;
+                _context.Whiskys.Add(whisky);
+                await _context.SaveChangesAsync();
+            }
+            return await GetWhiskys(false);
+
+        }
         public async Task<List<Whisky>> PourOne(string id)
         {
             if (await UserIsAdmin())
             {
                 var whisky = _context.Whiskys.Single(p => p.Id == id);
                 whisky.LastPour = DateTime.Now;
-                whisky.PourDates += DateTime.Now.ToShortDateString()+"||";
+                whisky.PourDates += DateTime.Now.ToShortDateString() + "||";
                 if (whisky.Pours.HasValue)
                     whisky.Pours = whisky.Pours.Value + 1;
                 else whisky.Pours = 1;
@@ -106,12 +125,12 @@ namespace whiskydb.Data
         {
             if (await UserIsAdmin())
             {
-                
+
                 _context.Whiskys.Attach(toUpdate);
                 _context.Entry(toUpdate).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
-            
+
         }
 
         public async Task AddWhisky(Whisky whiskyToAdd)

@@ -136,6 +136,7 @@ else
                         </button>
                         <button type="button" @onclick="() => DeleteWhisky(whisky.Id)" class="btn btn-danger">Delete
                             Whisky</button>
+                        <button type="button" @onclick="() => RebuyWhisky(whisky.Id)" class="btn btn-danger">Rebuy Whisky</button>
                     </Authorized>
                 </AuthorizeView>
                 <br />
@@ -194,6 +195,12 @@ else
     private async void DeleteWhisky(string id)
     {
         showModal = true;
+    }
+
+    private async void RebuyWhisky(string id)
+    {
+        await WhiskyService.RebuyWhisky(id);
+        NavigationManager.NavigateTo("/");
     }
 
     private bool IsNotAdmin()
